@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Synapse Documentation — Official CodeCanyon Product Guide</title>
+  <meta name="description" content="Official documentation for Synapse Technology platform on CodeCanyon. Setup, configuration, API, builder, and customization guides.">
+  <meta name="keywords" content="Synapse, CodeCanyon, Documentation, SaaS, PHP, Laravel, API, Installation Guide">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Top Reading Progress Indicator -->
+  <div class="reading-progress-bar" id="readingProgress"></div>
+
+  <!-- ==========================================================================
+       TOP NAVBAR / HEADER (Matches reference image header)
+       ========================================================================== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <!-- Brand Logo -->
+      <a href="#getting-started" class="brand-logo" data-view-target="getting-started" title="Synapse Documentation">
+        <div class="brand-icon">
+          <!-- Stylized Modern Geometric / Synapse Neural Icon -->
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg" class="synapse-logo-svg">
+            <defs>
+              <linearGradient id="brandGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#3b82f6" />
+                <stop offset="50%" stop-color="#2563eb" />
+                <stop offset="100%" stop-color="#6366f1" />
+              </linearGradient>
+            </defs>
+            <rect x="3" y="3" width="26" height="26" rx="8" fill="url(#brandGrad)" />
+            <path d="M16 8v16M8 16h16M10.5 10.5l11 11M21.5 10.5l-11 11" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+            <circle cx="16" cy="16" r="4" fill="#ffffff"/>
+            <circle cx="16" cy="8" r="2.2" fill="#ffffff"/>
+            <circle cx="16" cy="24" r="2.2" fill="#ffffff"/>
+            <circle cx="8" cy="16" r="2.2" fill="#ffffff"/>
+            <circle cx="24" cy="16" r="2.2" fill="#ffffff"/>
+          </svg>
+        </div>
+        <span class="brand-text">SYNAPSE</span>
+      </a>
+
+      <!-- Right Nav & Actions -->
+      <div class="header-right">
+        <!-- Main Navigation Links -->
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="#getting-started" class="nav-link active" data-view-target="getting-started">Home</a>
+          <a href="#contributions" class="nav-link" data-view-target="view-contributions">Support</a>
+          <a href="#faq" class="nav-link" data-view-target="faq">FAQ</a>
+          <a href="#categories" class="nav-link" data-view-target="view-categories">Categories</a>
+        </nav>
+
+        <!-- Search Button & Theme Toggle & Action -->
+        <div class="header-actions">
+          <!-- Search trigger button matching reference UI -->
+          <button type="button" class="search-trigger-btn" data-action="open-search" title="Search documentation (Ctrl+K)">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Search</span>
+            <kbd class="search-kbd">⌘K</kbd>
+          </button>
+
+          <!-- Dark/Light Theme Switcher -->
+          <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Blue CTA Button matching reference image -->
+          <a href="#getting-started" class="btn-primary-blue" data-view-target="view-license-verification">
+            Sign in
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ==========================================================================
+       MAIN APP CONTAINER (Sidebar + Main Content)
+       ========================================================================== -->
+  <div class="app-wrapper">
+
+    <!-- ==========================================================================
+         LEFT SIDEBAR (Matches categories and collapse carets in screenshot)
+         ========================================================================== -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav" aria-label="Documentation Navigation">
+
+        <!-- Section 1: Getting Started -->
+        <div class="nav-section open" id="sec-getting-started">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                  <path d="M9 12H4s.55-3.03 2-4.5c1.62-1.63 5-2.5 5-2.5"></path>
+                  <path d="M15 15v5s3.03-.55 4.5-2c1.63-1.62 2.5-5 2.5-5"></path>
+                </svg>
+              </span>
+              <span>Getting Started</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#what-is-synapse" class="nav-item-link" data-view-target="view-what-is-synapse">What is Synapse?</a>
+            <a href="#how-it-works" class="nav-item-link" data-view-target="view-how-it-works">How it Works</a>
+            <a href="#quick-start" class="nav-item-link" data-view-target="view-quick-start">Quick Start</a>
+          </div>
+        </div>
+
+        <!-- Section 2: Customization -->
+        <div class="nav-section open" id="sec-customization">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" x2="20" y1="21" y2="21"></line>
+                  <line x1="4" x2="20" y1="14" y2="14"></line>
+                  <line x1="4" x2="20" y1="7" y2="7"></line>
+                  <circle cx="14" cy="21" r="2.5" fill="currentColor" fill-opacity="0.18"></circle>
+                  <circle cx="8" cy="14" r="2.5" fill="currentColor" fill-opacity="0.18"></circle>
+                  <circle cx="16" cy="7" r="2.5" fill="currentColor" fill-opacity="0.18"></circle>
+                </svg>
+              </span>
+              <span>Customization</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#syncing-tools" class="nav-item-link" data-view-target="view-syncing-tools">Syncing Your Tools</a>
+            <a href="#builder" class="nav-item-link" data-view-target="view-builder">Introduction to the Builder</a>
+            <a href="#connecting-tools" class="nav-item-link" data-view-target="view-connecting-tools">Connecting Third Party Tools</a>
+          </div>
+        </div>
+
+        <!-- Section 3: Advanced Features -->
+        <div class="nav-section open" id="sec-advanced">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="16" height="16" x="4" y="4" rx="3"></rect>
+                  <rect width="6" height="6" x="9" y="9" rx="1"></rect>
+                  <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path>
+                </svg>
+              </span>
+              <span>Advanced Features</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#understanding-integrations" class="nav-item-link" data-view-target="view-understanding-integrations">Introduction to Integrations</a>
+            <a href="#installation" class="nav-item-link" data-view-target="view-installation">Installation</a>
+            <a href="#understanding-integrations" class="nav-item-link" data-view-target="view-understanding-integrations">Understanding Integrations</a>
+          </div>
+        </div>
+
+        <!-- Section 4: Community & Support -->
+        <div class="nav-section open" id="sec-community">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <!-- Users / Community icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </span>
+              <span>Community</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#contributions" class="nav-item-link" data-view-target="view-contributions">Contributions</a>
+            <a href="#license-verification" class="nav-item-link" data-view-target="view-license-verification">Envato License Verification</a>
+            <a href="#changelog" class="nav-item-link" data-view-target="view-changelog">Changelog & Updates</a>
+          </div>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN CONTENT AREA
+         ========================================================================== -->
+    <main class="content-area">
+
+      <!-- ======================================================================
+           VIEW 1: GETTING STARTED (Exact match of TOP SCREENSHOT in prompt)
+           ====================================================================== -->
+      <section class="view-panel active" id="view-getting-started">
+        <!-- Breadcrumb matching screenshot: Home / Getting Started -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Getting Started</span>
+        </nav>
+
+        <!-- Page Header -->
+        <h1 class="page-title">Getting Started</h1>
+        <p class="page-lead">
+          Fusce sit amet viverra ligula. Cras ut quam libero. Vivamus vel consectetur neque, et porta enim. Welcome to the official Synapse Technology product documentation for CodeCanyon buyers.
+        </p>
+
+        <!-- Divider line matching screenshot -->
+        <hr class="divider">
+
+        <!-- Articles Section Subtitle -->
+        <h2 class="section-subtitle">Articles</h2>
+
+        <!-- Article List Rows matching screenshot with ↗ arrow -->
+        <div class="articles-list">
+          <a href="#what-is-synapse" class="article-card" data-view-target="view-what-is-synapse">
+            <div class="article-card-left">
+              <span class="article-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+              </span>
+              <span class="article-title-text">What is Synapse?</span>
+            </div>
+            <span class="article-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a href="#how-it-works" class="article-card" data-view-target="view-how-it-works">
+            <div class="article-card-left">
+              <span class="article-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </span>
+              <span class="article-title-text">How it Works</span>
+            </div>
+            <span class="article-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </a>
+
+          <a href="#quick-start" class="article-card" data-view-target="view-quick-start">
+            <div class="article-card-left">
+              <span class="article-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </span>
+              <span class="article-title-text">Quick Start</span>
+            </div>
+            <span class="article-card-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 2: FAQ (Exact match of BOTTOM SCREENSHOT in prompt)
+           ====================================================================== -->
+      <section class="view-panel" id="view-faq">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">FAQ</span>
+        </nav>
+
+        <!-- Page Header -->
+        <h1 class="page-title">FAQ</h1>
+        <p class="page-lead">
+          Here we've compiled a list of queries commonly raised by users, providing concise and insightful answers to address your concerns.
+        </p>
+
+        <!-- Divider line -->
+        <hr class="divider">
+
+        <!-- FAQ Accordion List matching the screenshot -->
+        <div class="faq-list">
+
+          <!-- FAQ Item 1 -->
+          <div class="faq-card open">
+            <button type="button" class="faq-header" aria-expanded="true">
+              <span>How do I use Synapse?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>
+                Using Synapse is straightforward. After downloading the item package from CodeCanyon:
+              </p>
+              <ul>
+                <li>Upload the unzipped project files to your web server or hosting control panel (cPanel, Plesk, VPS, or Docker).</li>
+                <li>Navigate to your domain in the browser (e.g., <code>https://yourdomain.com/install</code>) to trigger the interactive setup wizard.</li>
+                <li>Enter your database credentials and initial administrator account details.</li>
+                <li>Login to the Super Admin dashboard and start configuring your services, integrations, and visual workflows.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-card">
+            <button type="button" class="faq-header" aria-expanded="false">
+              <span>What are the basic configuration steps after purchase?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>Following a fresh installation, we recommend completing these 4 essential configuration steps:</p>
+              <ul>
+                <li><strong>General Settings:</strong> Set your site title, upload your custom logo, favicon, and timezone in <em>Admin &gt; Settings &gt; General</em>.</li>
+                <li><strong>Mail Server (SMTP):</strong> Configure your email delivery (SendGrid, Mailgun, Amazon SES, or standard SMTP) to ensure password resets and order notifications deliver reliably.</li>
+                <li><strong>Payment Gateways:</strong> Input your Stripe/PayPal API keys and configure webhook endpoints in <em>Settings &gt; Payment Methods</em>.</li>
+                <li><strong>Cron Job:</strong> Set up the background cron task (<code>* * * * * php /path/to/artisan schedule:run</code>) on your server for automated task execution.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-card">
+            <button type="button" class="faq-header" aria-expanded="false">
+              <span>Can I customize the design of the template, and if so, how?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>
+                Yes, 100%! Synapse is architected with clean, modular code designed for painless customization:
+              </p>
+              <ul>
+                <li><strong>Built-in Visual Customizer:</strong> Adjust brand colors, typography, layout widths, and header styles directly from the Admin Panel without modifying code.</li>
+                <li><strong>Clean CSS &amp; Blade/HTML Templates:</strong> The source code includes well-commented files. Custom styles can be added in <code>custom.css</code> so your modifications are preserved during version updates.</li>
+                <li><strong>Language &amp; Translations:</strong> Full multi-language support. You can translate every phrase via the Admin Localization Manager or by editing JSON language files.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-card">
+            <button type="button" class="faq-header" aria-expanded="false">
+              <span>Are there options for changing color schemes and typography?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>
+                Absolutely. Synapse utilizes modern CSS Custom Properties (CSS variables) for instantaneous theme switching:
+              </p>
+              <div class="code-block-wrapper">
+                <div class="code-header">
+                  <div class="code-header-left">
+                    <span class="code-circle circle-red"></span>
+                    <span class="code-circle circle-yellow"></span>
+                    <span class="code-circle circle-green"></span>
+                    <span>custom-variables.css</span>
+                  </div>
+                  <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+                </div>
+                <pre><code>:root {
+  --primary-color: #2563eb;       /* Primary Brand Color */
+  --secondary-color: #7c3aed;     /* Accent Violet */
+  --font-family-base: 'Plus Jakarta Sans', sans-serif;
+  --border-radius: 8px;
+}</code></pre>
+              </div>
+              <p>Both Dark and Light themes are fully supported out-of-the-box with auto-detection of system preferences.</p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-card">
+            <button type="button" class="faq-header" aria-expanded="false">
+              <span>Which third-party integrations are supported by the Webflow / Platform?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>Synapse features native integrations with over 15+ industry-standard third-party providers:</p>
+              <ul>
+                <li><strong>Payment Processors:</strong> Stripe, PayPal, Razorpay, Mollie, Paystack, Flutterwave, and Bank Transfer.</li>
+                <li><strong>AI Engines:</strong> OpenAI (GPT-4o, DALL-E 3), Google Gemini Pro, Anthropic Claude, and ElevenLabs Audio.</li>
+                <li><strong>Storage Providers:</strong> Amazon AWS S3, Cloudflare R2, DigitalOcean Spaces, and Local Server Disk.</li>
+                <li><strong>Communications:</strong> Twilio SMS, WhatsApp Business API, Telegram Bot, Slack Notifications, and Pusher WebSocket.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-card">
+            <button type="button" class="faq-header" aria-expanded="false">
+              <span>Where can I find my Envato / CodeCanyon Purchase Code?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>To find your unique Item Purchase Code:</p>
+              <ol>
+                <li>Log in to your <strong>CodeCanyon / Envato Market</strong> account.</li>
+                <li>Hover over your username at the top right and click <strong>Downloads</strong>.</li>
+                <li>Find <strong>Synapse</strong> in your download list.</li>
+                <li>Click the green <strong>Download</strong> button and select <strong>License certificate &amp; purchase code (PDF or text)</strong>.</li>
+                <li>Open the downloaded file and copy the alphanumeric code listed under <em>Item Purchase Code</em>.</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- FAQ Item 7 -->
+          <div class="faq-card">
+            <button type="button" class="faq-header" aria-expanded="false">
+              <span>Can I use one Regular License on multiple websites or subdomains?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="faq-body">
+              <p>
+                In accordance with Envato License terms, one Regular License is valid for <strong>one single end product</strong> (one production domain). You are allowed to use the same license key on a local staging environment (e.g., <code>localhost</code> or <code>dev.yourdomain.com</code>) for testing purposes before going live. For multiple client installations, you must purchase a separate license for each domain.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 3: ARTICLE - WHAT IS SYNAPSE?
+           ====================================================================== -->
+      <section class="view-panel" id="view-what-is-synapse">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Getting Started</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">What is Synapse?</span>
+        </nav>
+
+        <h1 class="page-title">What is Synapse?</h1>
+        <div class="article-header-meta">
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span>Updated: Sep 2026</span></span>
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>3 min read</span></span>
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg><span>Overview</span></span>
+        </div>
+
+        <p class="page-lead">
+          Synapse is an enterprise-grade AI-powered SaaS and workflow automation platform engineered specifically for CodeCanyon authors and digital product creators.
+        </p>
+
+        <hr class="divider">
+
+        <!-- Product Preview Banner -->
+        <div class="doc-banner">
+          <img src="Images/synapse-banner.jpg" alt="Synapse Technology Product Interface Banner" loading="lazy">
+        </div>
+
+        <div class="doc-content">
+          <h2>Overview &amp; Philosophy</h2>
+          <p>
+            Synapse bridges the gap between complex software backends and intuitive visual workflows. It provides an all-in-one ecosystem for managing users, handling subscription payments, orchestrating automated business tasks, and integrating cutting-edge AI engines without writing boilerplate code.
+          </p>
+
+          <div class="callout callout-info">
+            <div class="callout-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2v1"></path><path d="M12 7a5 5 0 1 0 5 5c0-1.8-1-2.8-1.5-3.5A5 5 0 0 0 12 7z"></path></svg></div>
+            <div class="callout-content">
+              <div class="callout-title">Ready for CodeCanyon Upload</div>
+              <div>This documentation portal is 100% self-contained, responsive, and adheres strictly to Envato Market documentation guidelines for elite author submission.</div>
+            </div>
+          </div>
+
+          <h2>Key Platform Capabilities</h2>
+          <ul>
+            <li><strong>Automated Workflow Builder:</strong> Connect triggers, conditions, external APIs, and outgoing actions on a smooth visual drag-and-drop canvas.</li>
+            <li><strong>Multi-Tenancy &amp; User Roles:</strong> Built-in Super Admin, Manager, and End-User roles with granular access permissions.</li>
+            <li><strong>Subscription &amp; Billing Engine:</strong> Automated recurring payments, trial periods, tax handling, and PDF invoice generation.</li>
+            <li><strong>RESTful API &amp; Webhooks:</strong> Over 40+ standardized JSON endpoints for third-party integrations and headless client apps.</li>
+          </ul>
+
+          <h2>Package Directory Structure</h2>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>synapse-package/</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code>synapse-v1.2.0-codecanyon/
+├── documentation/             # Offline HTML Documentation portal (this website)
+│   ├── index.html
+│   ├── css/style.css
+│   ├── js/app.js
+│   └── Images/
+├── script/                    # Main software application files
+│   ├── app/
+│   ├── config/
+│   ├── database/
+│   ├── public/
+│   ├── resources/
+│   └── routes/
+├── database.sql               # Clean starter MySQL database dump
+└── README.txt                 # Quick installation notes and license</code></pre>
+          </div>
+        </div>
+
+        <div class="article-feedback">
+          <span class="feedback-left">Was this article helpful?</span>
+          <div class="feedback-buttons">
+            <button type="button" class="feedback-btn" data-action="feedback-yes"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3"></path></svg><span>Yes</span></button>
+            <button type="button" class="feedback-btn" data-action="feedback-no"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"></path><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3"></path></svg><span>No</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 4: ARTICLE - HOW IT WORKS
+           ====================================================================== -->
+      <section class="view-panel" id="view-how-it-works">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Getting Started</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">How it Works</span>
+        </nav>
+
+        <h1 class="page-title">How it Works</h1>
+        <div class="article-header-meta">
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span>Updated: Sep 2026</span></span>
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>4 min read</span></span>
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg><span>Architecture</span></span>
+        </div>
+
+        <p class="page-lead">
+          Understanding the data lifecycle, execution engine, and modular event flow of Synapse Technology.
+        </p>
+
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Core Architectural Flow</h2>
+          <p>
+            Synapse follows an event-driven decoupled architecture. When an action occurs (e.g. a customer makes a purchase, a webhook is fired, or a scheduled cron job executes), the core kernel dispatches an event through prioritized message queues.
+          </p>
+
+          <div class="steps-container">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <div class="step-title">Trigger Event Ingestion</div>
+                <div>Events arrive via HTTP Webhooks, Scheduled Cron jobs, or Admin UI interactions. Incoming payloads are validated against strict schema rules.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <div class="step-title">Conditional Logic Evaluation</div>
+                <div>The Synapse Workflow Engine processes the configured filter nodes (e.g., "if total &gt; $50" or "if user status is active").</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <div class="step-title">Action Execution &amp; Dispatch</div>
+                <div>External API calls (OpenAI, Stripe, SMTP, Webhooks) are processed asynchronously in worker queues to guarantee sub-millisecond page response times.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+            <div class="callout-content">
+              <div class="callout-title">Queue Worker Tip</div>
+              <div>For high-volume production setups, running Supervisor to monitor <code>php artisan queue:work --tries=3</code> delivers optimal performance and fault tolerance.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-feedback">
+          <span class="feedback-left">Was this article helpful?</span>
+          <div class="feedback-buttons">
+            <button type="button" class="feedback-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3"></path></svg><span>Yes</span></button>
+            <button type="button" class="feedback-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"></path><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3"></path></svg><span>No</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 5: ARTICLE - QUICK START
+           ====================================================================== -->
+      <section class="view-panel" id="view-quick-start">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Getting Started</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Quick Start</span>
+        </nav>
+
+        <h1 class="page-title">Quick Start Guide</h1>
+        <div class="article-header-meta">
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Setup: 5 mins</span></span>
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span>Difficulty: Easy</span></span>
+          <span class="meta-pill"><svg class="meta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg><span>Installation</span></span>
+        </div>
+
+        <p class="page-lead">
+          Follow this 3-step rapid setup guide to deploy Synapse to your production server or local testing environment.
+        </p>
+
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Step 1: Upload Files &amp; Set Permissions</h2>
+          <p>
+            Extract the zip file downloaded from CodeCanyon and upload the files inside the <code>/script/</code> folder to your web server root (typically <code>public_html</code> or your Nginx/Apache virtual host directory).
+          </p>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>bash</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code># Ensure write permissions for storage and cache directories
+chmod -R 775 storage bootstrap/cache
+chown -R www-data:www-data /var/www/html</code></pre>
+          </div>
+
+          <h2>Step 2: Create a MySQL Database</h2>
+          <p>
+            In your hosting control panel (cPanel, Plesk, CyberPanel, or MySQL CLI), create a new blank database:
+          </p>
+          <ul>
+            <li><strong>Database Name:</strong> <code>synapse_db</code></li>
+            <li><strong>Database User:</strong> <code>synapse_user</code></li>
+            <li><strong>Collation:</strong> <code>utf8mb4_unicode_ci</code></li>
+          </ul>
+
+          <h2>Step 3: Run the Web Installer</h2>
+          <p>
+            Open your browser and visit your site domain:
+          </p>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>browser</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code>https://yourdomain.com/install</code></pre>
+          </div>
+
+          <div class="callout callout-info">
+            <div class="callout-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3"></path></svg></div>
+            <div class="callout-content">
+              <div class="callout-title">Default Administrator Credentials</div>
+              <div><strong>Email:</strong> admin@synapse.tech<br><strong>Password:</strong> admin123456<br><em>(Please change these credentials immediately upon first login!)</em></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-feedback">
+          <span class="feedback-left">Was this article helpful?</span>
+          <div class="feedback-buttons">
+            <button type="button" class="feedback-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"></path><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3"></path></svg><span>Yes</span></button>
+            <button type="button" class="feedback-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"></path><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3"></path></svg><span>No</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 6: ARTICLE - SYNCING YOUR TOOLS
+           ====================================================================== -->
+      <section class="view-panel" id="view-syncing-tools">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Customization</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Syncing Your Tools</span>
+        </nav>
+
+        <h1 class="page-title">Syncing Your Tools</h1>
+        <p class="page-lead">
+          Connect your existing databases, third-party webhook relays, and external APIs with automated bi-directional synchronization.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Automated Cron Synchronization</h2>
+          <p>
+            To keep customer records, subscription statuses, and workflow queues in sync, add this single cron entry to your server:
+          </p>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>crontab -e</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code>* * * * * cd /path/to/synapse && php artisan schedule:run >> /dev/null 2>&1</code></pre>
+          </div>
+
+          <h2>Real-Time Webhook Listeners</h2>
+          <p>
+            Synapse creates automated endpoints for each service. For instance, to sync Stripe customer payments, navigate to <em>Admin &gt; Integrations &gt; Stripe</em> and copy the pre-generated webhook URL into your Stripe Developer Dashboard.
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 7: ARTICLE - INTRODUCTION TO THE BUILDER
+           ====================================================================== -->
+      <section class="view-panel" id="view-builder">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Customization</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Introduction to the Builder</span>
+        </nav>
+
+        <h1 class="page-title">Introduction to the Builder</h1>
+        <p class="page-lead">
+          Master the drag-and-drop workflow canvas and front-end interface customizer included in Synapse.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Canvas Components</h2>
+          <p>The builder consists of three main elements:</p>
+          <ul>
+            <li><strong>Trigger Nodes:</strong> Specify what starts the automation (form submission, new order, API call).</li>
+            <li><strong>Decision Logic Nodes:</strong> Branch paths based on variable conditions, regex matching, or user attributes.</li>
+            <li><strong>Action Nodes:</strong> Execute external tasks such as sending emails, writing database rows, or querying AI language models.</li>
+          </ul>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2v1"></path><path d="M12 7a5 5 0 1 0 5 5c0-1.8-1-2.8-1.5-3.5A5 5 0 0 0 12 7z"></path></svg></div>
+            <div class="callout-content">
+              <div class="callout-title">Pre-built Workflow Templates</div>
+              <div>Synapse includes 20+ ready-to-use automation templates for user onboarding, order confirmations, churn prevention, and lead scoring.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 8: ARTICLE - CONNECTING THIRD PARTY TOOLS
+           ====================================================================== -->
+      <section class="view-panel" id="view-connecting-tools">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Customization</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Connecting Third Party Tools</span>
+        </nav>
+
+        <h1 class="page-title">Connecting Third Party Tools</h1>
+        <p class="page-lead">
+          Easily connect payment processors, email gateways, AI models, and cloud storage providers.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Configuring API Keys</h2>
+          <p>
+            All third-party credentials are securely stored using AES-256 encryption. To add your API keys:
+          </p>
+          <ol>
+            <li>Go to <strong>Admin Dashboard &gt; Settings &gt; Integrations</strong>.</li>
+            <li>Select the provider (e.g., Stripe, PayPal, OpenAI, or AWS S3).</li>
+            <li>Paste your <em>API Key</em>, <em>Secret Key</em>, and <em>Webhook Secret</em>.</li>
+            <li>Click <strong>Test Connection</strong> to verify valid authentication.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 9: ARTICLE - INSTALLATION & REQUIREMENTS
+           ====================================================================== -->
+      <section class="view-panel" id="view-installation">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Advanced Features</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Installation &amp; Requirements</span>
+        </nav>
+
+        <h1 class="page-title">Installation &amp; Requirements</h1>
+        <p class="page-lead">
+          Detailed technical specifications, PHP extensions, and Apache/Nginx web server setup rules.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Server Prerequisites</h2>
+          <ul>
+            <li><strong>PHP:</strong> Version 8.2 or 8.3</li>
+            <li><strong>Database:</strong> MySQL 8.0+ or MariaDB 10.5+</li>
+            <li><strong>Web Server:</strong> Apache (with <code>mod_rewrite</code>) or Nginx</li>
+            <li><strong>Required PHP Extensions:</strong> BCMath, Ctype, cURL, DOM, Fileinfo, JSON, Mbstring, OpenSSL, PCRE, PDO, Tokenizer, XML, GD/Imagick, and Zip.</li>
+          </ul>
+
+          <h2>Nginx Configuration Example</h2>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>/etc/nginx/sites-available/synapse.conf</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code>server {
+    listen 80;
+    server_name yourdomain.com;
+    root /var/www/synapse/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.php;
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 10: ARTICLE - UNDERSTANDING INTEGRATIONS
+           ====================================================================== -->
+      <section class="view-panel" id="view-understanding-integrations">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Advanced Features</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Understanding Integrations</span>
+        </nav>
+
+        <h1 class="page-title">Understanding Integrations &amp; API</h1>
+        <p class="page-lead">
+          Interact with Synapse programmatically using our high-speed JSON REST API.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Authentication</h2>
+          <p>
+            All API endpoints require a Bearer token in the <code>Authorization</code> header:
+          </p>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>http-request</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code>curl -X GET "https://yourdomain.com/api/v1/workflows" \
+     -H "Authorization: Bearer 98a3f81e-4c7b-4028-a5be-9dc1490b8" \
+     -H "Content-Type: application/json" \
+     -H "Accept: application/json"</code></pre>
+          </div>
+
+          <h2>Sample JSON Response</h2>
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <div class="code-header-left">
+                <span class="code-circle circle-red"></span>
+                <span class="code-circle circle-yellow"></span>
+                <span class="code-circle circle-green"></span>
+                <span>response.json</span>
+              </div>
+              <button type="button" class="copy-btn" title="Copy code snippet"><svg class="copy-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><span>Copy</span></button>
+            </div>
+            <pre><code>{
+  "status": "success",
+  "data": [
+    {
+      "id": "wf_9021",
+      "name": "Customer Onboarding Sync",
+      "status": "active",
+      "nodes_count": 8,
+      "last_executed_at": "2026-09-28T07:15:00Z"
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 11: ARTICLE - CONTRIBUTIONS & SUPPORT
+           ====================================================================== -->
+      <section class="view-panel" id="view-contributions">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Community</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Contributions &amp; Support</span>
+        </nav>
+
+        <h1 class="page-title">Item Support &amp; Helpdesk</h1>
+        <p class="page-lead">
+          We pride ourselves on providing 5-star author support for all verified CodeCanyon buyers.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Envato Item Support Policy</h2>
+          <p>
+            Your purchase comes with <strong>6 months of free technical support</strong> directly from the authors of Synapse Technology.
+          </p>
+
+          <div class="feature-grid">
+            <div class="feature-box">
+              <div class="feature-box-icon feature-icon-success"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+              <div class="feature-box-title">What is Included:</div>
+              <div class="feature-box-desc">
+                - Answering technical questions about built-in features<br>
+                - Bug fixes and reported security patches<br>
+                - Guidance on installation and configuration
+              </div>
+            </div>
+            <div class="feature-box">
+              <div class="feature-box-icon feature-icon-warning"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+              <div class="feature-box-title">What is NOT Included:</div>
+              <div class="feature-box-desc">
+                - Custom feature programming or third-party redesigns<br>
+                - Hosting server maintenance or third-party plugin conflicts<br>
+                - Services without a valid Envato purchase code
+              </div>
+            </div>
+          </div>
+
+          <h2>How to Open a Support Ticket</h2>
+          <p>
+            Please visit our official support desk at <strong>support.synapse.tech</strong> or click the <em>Support</em> tab on our CodeCanyon item page. Remember to include your <strong>Purchase Code</strong> for instant authorization.
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 12: ARTICLE - ENVATO LICENSE VERIFICATION
+           ====================================================================== -->
+      <section class="view-panel" id="view-license-verification">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Community</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">License Verification</span>
+        </nav>
+
+        <h1 class="page-title">Envato License Verification</h1>
+        <p class="page-lead">
+          Activate automatic 1-click updates and official support by verifying your purchase code.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>Locating Your Purchase Code</h2>
+          <p>
+            Envato assigns a unique 36-character UUID to every purchase.
+          </p>
+          <ol>
+            <li>Go to <a href="https://codecanyon.net/downloads" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: underline;">codecanyon.net/downloads</a></li>
+            <li>Click <strong>Download &gt; License certificate &amp; purchase code (text file)</strong>.</li>
+            <li>Open the file and copy the string labeled <code>Item Purchase Code</code>.</li>
+          </ol>
+
+          <h2>Activating Your License</h2>
+          <p>
+            In your Synapse Admin Dashboard, navigate to <strong>Settings &gt; License</strong>. Paste your purchase code and your Envato username, then click <strong>Verify &amp; Activate</strong>.
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 13: ARTICLE - CHANGELOG & UPDATES
+           ====================================================================== -->
+      <section class="view-panel" id="view-changelog">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-link">Community</span>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Changelog &amp; Updates</span>
+        </nav>
+
+        <h1 class="page-title">Changelog &amp; Release History</h1>
+        <p class="page-lead">
+          Full breakdown of version releases, enhancements, and bug resolutions.
+        </p>
+        <hr class="divider">
+
+        <div class="doc-content">
+          <h2>v1.2.0 (Latest Release - September 2026)</h2>
+          <ul>
+            <li><strong>Added:</strong> Complete interactive visual workflow canvas builder.</li>
+            <li><strong>Added:</strong> Native support for Google Gemini Pro 1.5 and OpenAI GPT-4o.</li>
+            <li><strong>Added:</strong> One-click automated database backup to Amazon S3 &amp; Cloudflare R2.</li>
+            <li><strong>Fixed:</strong> Webhook signature verification issue for Stripe Connect accounts.</li>
+            <li><strong>Improved:</strong> Admin dashboard loading performance by 42%.</li>
+          </ul>
+
+          <h2>v1.1.0 (July 2026)</h2>
+          <ul>
+            <li><strong>Added:</strong> Dark Mode theme switch with auto-system detection.</li>
+            <li><strong>Added:</strong> Multi-currency support with dynamic live exchange rate syncing.</li>
+            <li><strong>Improved:</strong> Documentation portal UI and keyboard search capabilities.</li>
+          </ul>
+
+          <h2>v1.0.0 (Initial Release - April 2026)</h2>
+          <ul>
+            <li>Initial public release of Synapse on Envato Market CodeCanyon.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VIEW 14: CATEGORIES OVERVIEW
+           ====================================================================== -->
+      <section class="view-panel" id="view-categories">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#getting-started" class="breadcrumb-link" data-view-target="getting-started">Home</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Categories</span>
+        </nav>
+
+        <h1 class="page-title">Documentation Categories</h1>
+        <p class="page-lead">
+          Browse through all sections of the Synapse product knowledgebase.
+        </p>
+        <hr class="divider">
+
+        <div class="feature-grid">
+          <a href="#getting-started" class="feature-box" data-view-target="getting-started">
+            <div class="feature-box-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div>
+            <div class="feature-box-title">Getting Started</div>
+            <div class="feature-box-desc">What is Synapse, core features, how it works, and rapid 5-minute setup.</div>
+          </a>
+
+          <a href="#customization" class="feature-box" data-view-target="view-syncing-tools">
+            <div class="feature-box-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="21" y2="21"></line><line x1="4" x2="20" y1="14" y2="14"></line><line x1="4" x2="20" y1="7" y2="7"></line><circle cx="14" cy="21" r="3" fill="currentColor" fill-opacity="0.2"></circle><circle cx="8" cy="14" r="3" fill="currentColor" fill-opacity="0.2"></circle><circle cx="16" cy="7" r="3" fill="currentColor" fill-opacity="0.2"></circle></svg></div>
+            <div class="feature-box-title">Customization</div>
+            <div class="feature-box-desc">UI builder, CSS themes, typography variables, and syncing your tools.</div>
+          </a>
+
+          <a href="#installation" class="feature-box" data-view-target="view-installation">
+            <div class="feature-box-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+            <div class="feature-box-title">Advanced Features</div>
+            <div class="feature-box-desc">Server configuration, Nginx/Apache configs, and REST API integrations.</div>
+          </a>
+
+          <a href="#faq" class="feature-box" data-view-target="faq">
+            <div class="feature-box-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+            <div class="feature-box-title">Frequently Asked Questions</div>
+            <div class="feature-box-desc">Common buyer questions, licenses, troubleshooting, and support terms.</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           FOOTER (Inside main content column matching the reference image layout)
+           ========================================================================== -->
+      <footer class="footer">
+        <div class="footer-inner">
+          <!-- Main Links Row matching screenshot -->
+          <nav class="footer-links-row" aria-label="Footer Links">
+            <a href="#getting-started" class="footer-link" data-view-target="getting-started">Home</a>
+            <a href="#contributions" class="footer-link" data-view-target="view-contributions">Support</a>
+            <a href="#faq" class="footer-link" data-view-target="faq">FAQ</a>
+            <a href="#license-verification" class="footer-link" data-view-target="view-license-verification">Authors</a>
+            <a href="#categories" class="footer-link" data-view-target="view-categories">Categories</a>
+            <a href="#getting-started" class="footer-link" data-view-target="view-license-verification">Sign In</a>
+            <a href="#getting-started" class="footer-link" data-view-target="view-license-verification">Sign Up</a>
+          </nav>
+
+          <!-- Secondary Sublinks matching screenshot -->
+          <div class="footer-secondary-links">
+            <a href="#quick-start" class="footer-sublink" data-view-target="view-quick-start">Style Guide</a>
+            <a href="#installation" class="footer-sublink" data-view-target="view-installation">Instructions</a>
+            <a href="#license-verification" class="footer-sublink" data-view-target="view-license-verification">Licenses</a>
+            <a href="#changelog" class="footer-sublink" data-view-target="view-changelog">Changelog</a>
+            <a href="#builder" class="footer-sublink" data-view-target="view-builder">Components</a>
+          </div>
+
+          <!-- Copyright row -->
+          <div class="footer-copyright">
+            © Synapse — 2026. All rights reserved. Powered by <strong>Synapse Technology</strong>.
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       SEARCH MODAL (Ctrl+K or Search Button)
+       ========================================================================== -->
+  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search Documentation">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search documentation, articles, or FAQs..." autocomplete="off">
+        <span class="search-esc-badge">ESC</span>
+        <button type="button" class="search-modal-close" id="searchModalClose" aria-label="Close search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="search-results-list" id="searchResults">
+        <!-- Results injected dynamically via JS -->
+      </div>
+      <div class="search-footer">
+        <span>Navigation: <kbd class="search-kbd">↑</kbd> <kbd class="search-kbd">↓</kbd> to select</span>
+        <span>Select: <kbd class="search-kbd">ENTER</kbd></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Code copied to clipboard!</div>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Scroll back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m18 15-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Application Logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>
