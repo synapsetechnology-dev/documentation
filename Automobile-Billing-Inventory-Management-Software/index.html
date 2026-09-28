@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automobile Billing & Workshop POS Documentation - Synapse Technology</title>
+  <meta name="description" content="Official documentation for Automobile Billing & Workshop POS System. Setup, 4-step web installer, POS billing, inventory, WhatsApp invoicing, and maintenance guides.">
+  <meta name="keywords" content="Automobile Billing, Workshop POS, Garage Management, CodeCanyon, Laravel, Spare Parts Inventory, PHP 8.2, Web Installer, Synapse Technology">
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Top Reading Progress Indicator -->
+  <div class="reading-progress-bar" id="readingProgress"></div>
+
+  <!-- ==========================================================================
+       TOP NAVBAR / HEADER
+       ========================================================================== -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <!-- Brand Logo -->
+      <a href="#auto-overview" class="brand-logo" data-view-target="auto-overview" title="Automobile Billing & POS Documentation">
+        <div class="brand-icon">
+          <!-- Automotive / Gear / Speedometer SVG Icon -->
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg" class="synapse-logo-svg">
+            <defs>
+              <linearGradient id="autoGrad" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#F97316" />
+                <stop offset="50%" stop-color="#EA580C" />
+                <stop offset="100%" stop-color="#C2410C" />
+              </linearGradient>
+            </defs>
+            <rect x="3" y="3" width="26" height="26" rx="8" fill="url(#autoGrad)" />
+            <path d="M16 8C11.58 8 8 11.58 8 16c0 4.42 3.58 8 8 8s8-3.58 8-8c0-4.42-3.58-8-8-8zm0 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="#ffffff" opacity="0.3"/>
+            <path d="M16 12v4l3 2" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="2.5" fill="#ffffff"/>
+            <path d="M10 20l2-2M22 20l-2-2" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="display:flex; flex-direction:column; line-height: 1.1;">
+          <span class="brand-text" style="letter-spacing: 0.5px;">AUTOMOBILE POS</span>
+          <span style="font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Synapse Product Doc</span>
+        </div>
+      </a>
+
+      <!-- Right Nav & Actions -->
+      <div class="header-right">
+        <!-- Main Navigation Links -->
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="../index.html" class="nav-link" style="color: var(--text-muted); font-weight: 600;">&larr; Main Hub</a>
+          <a href="#auto-overview" class="nav-link active" data-view-target="auto-overview">Overview</a>
+          <a href="#auto-web-installer" class="nav-link" data-view-target="auto-web-installer">Web Installer</a>
+          <a href="#auto-pos-invoicing" class="nav-link" data-view-target="auto-pos-invoicing">POS & WhatsApp</a>
+          <a href="#auto-inventory" class="nav-link" data-view-target="auto-inventory">Inventory</a>
+          <a href="#auto-support" class="nav-link" data-view-target="auto-support">Support</a>
+          <a href="#auto-credits" class="nav-link" data-view-target="auto-credits" style="color: var(--primary); font-weight: 700;">Credits</a>
+        </nav>
+
+        <!-- Search Button & Theme Toggle & Action -->
+        <div class="header-actions">
+          <button type="button" class="search-trigger-btn" data-action="open-search" title="Search documentation (Ctrl+K)">
+            <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Search</span>
+            <kbd class="search-kbd">&#8984;K</kbd>
+          </button>
+
+          <!-- Dark/Light Theme Switcher -->
+          <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ==========================================================================
+       MAIN APP CONTAINER (Sidebar + Main Content)
+       ========================================================================== -->
+  <div class="app-wrapper">
+
+    <!-- ==========================================================================
+         LEFT SIDEBAR
+         ========================================================================== -->
+        <aside class="sidebar" id="sidebar">
+      <!-- Mobile Drawer Header with Close Button -->
+      <div class="sidebar-header-mobile">
+        <div class="sidebar-mobile-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>Documentation Menu</span>
+        </div>
+        <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close documentation menu">&times;</button>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Documentation Navigation">
+
+        <!-- Section 1: Product Overview -->
+        <div class="nav-section open" id="sec-auto-overview">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                  <path d="M9 12H4s.55-3.03 2-4.5c1.62-1.63 5-2.5 5-2.5"></path>
+                  <path d="M15 15v5s3.03-.55 4.5-2c1.63-1.62 2.5-5 2.5-5"></path>
+                </svg>
+              </span>
+              <span>1. Getting Started</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#auto-overview" class="nav-item-link active" data-view-target="auto-overview">Product Overview</a>
+            <a href="#auto-requirements" class="nav-item-link" data-view-target="auto-requirements">Server Requirements</a>
+            <a href="#auto-package" class="nav-item-link" data-view-target="auto-package">What's in Download Package</a>
+          </div>
+        </div>
+
+        <!-- Section 2: Installation -->
+        <div class="nav-section open" id="sec-auto-install">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </span>
+              <span>2. Installation & Setup</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#auto-web-installer" class="nav-item-link" data-view-target="auto-web-installer">
+              <span>Web Installer (4-Step)</span>
+              <span class="nav-badge-online" style="background:#f97316;color:#fff;">Recommended</span>
+            </a>
+            <a href="#auto-cpanel-install" class="nav-item-link" data-view-target="auto-cpanel-install">Manual cPanel & phpMyAdmin</a>
+            <a href="#auto-vps-install" class="nav-item-link" data-view-target="auto-vps-install">VPS & Terminal CLI</a>
+            <a href="#auto-credentials" class="nav-item-link" data-view-target="auto-credentials">Default Login Credentials</a>
+          </div>
+        </div>
+
+        <!-- Section 3: Configuration -->
+        <div class="nav-section open" id="sec-auto-config">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" x2="20" y1="21" y2="21"></line>
+                  <line x1="4" x2="20" y1="14" y2="14"></line>
+                  <line x1="4" x2="20" y1="7" y2="7"></line>
+                  <circle cx="14" cy="21" r="2.5" fill="currentColor" fill-opacity="0.18"></circle>
+                  <circle cx="8" cy="14" r="2.5" fill="currentColor" fill-opacity="0.18"></circle>
+                  <circle cx="16" cy="7" r="2.5" fill="currentColor" fill-opacity="0.18"></circle>
+                </svg>
+              </span>
+              <span>3. Configuration & Print</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#auto-settings" class="nav-item-link" data-view-target="auto-settings">Store Setup & Multi-Currency</a>
+            <a href="#auto-invoice-layouts" class="nav-item-link" data-view-target="auto-invoice-layouts">5 Built-in Print Layouts</a>
+          </div>
+        </div>
+
+        <!-- Section 4: Core Modules -->
+        <div class="nav-section open" id="sec-auto-modules">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="16" height="16" x="4" y="4" rx="3"></rect>
+                  <rect width="6" height="6" x="9" y="9" rx="1"></rect>
+                  <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path>
+                </svg>
+              </span>
+              <span>4. Core Business Modules</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#auto-inventory" class="nav-item-link" data-view-target="auto-inventory">Spare Parts & Inventory</a>
+            <a href="#auto-unit-conversion" class="nav-item-link" data-view-target="auto-unit-conversion">Multi-Unit Conversion</a>
+            <a href="#auto-pos-invoicing" class="nav-item-link" data-view-target="auto-pos-invoicing">POS & WhatsApp Invoicing</a>
+            <a href="#auto-customer-ledgers" class="nav-item-link" data-view-target="auto-customer-ledgers">Customer Ledgers & FIFO</a>
+          </div>
+        </div>
+
+        <!-- Section 5: Maintenance -->
+        <div class="nav-section open" id="sec-auto-maintenance">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+              </span>
+              <span>5. Maintenance & Utilities</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#auto-backups" class="nav-item-link" data-view-target="auto-backups">1-Click Backups & Cache</a>
+          </div>
+        </div>
+
+        <!-- Section 6: Support & Changelog -->
+        <div class="nav-section open" id="sec-auto-support">
+          <button type="button" class="nav-section-header" aria-expanded="true">
+            <div class="nav-section-title-wrap">
+              <span class="nav-section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </span>
+              <span>6. Support & Updates</span>
+            </div>
+            <svg class="nav-section-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </button>
+          <div class="nav-section-items">
+            <a href="#auto-troubleshooting" class="nav-item-link" data-view-target="auto-troubleshooting">Troubleshooting</a>
+            <a href="#auto-faq" class="nav-item-link" data-view-target="auto-faq">Frequently Asked Questions</a>
+            <a href="#auto-changelog" class="nav-item-link" data-view-target="auto-changelog">Changelog (v1.0.0)</a>
+            <a href="#auto-support" class="nav-item-link" data-view-target="auto-support">
+              <span>Author Support (+91 6002552415)</span>
+              <span class="nav-badge-online">Online</span>
+            </a>
+            <a href="#auto-credits" class="nav-item-link" data-view-target="auto-credits">Sources &amp; Credits</a>
+          </div>
+        </div>
+
+      </nav>
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN CONTENT AREA
+         ========================================================================== -->
+    <main class="content-area">
+
+      <!-- VIEW 1: OVERVIEW -->
+      <section class="view-panel active" id="view-auto-overview">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Product Overview</span>
+        </nav>
+
+        <h1 class="page-title">Automobile Billing & Workshop POS System</h1>
+        <p class="page-lead">
+          High-performance, modern, and feature-rich billing and shop management software designed specifically for automotive repair workshops, mechanic garages, car wash centers, and auto spare parts retailers.
+        </p>
+
+        <!-- Presentation Banner -->
+        <div style="margin: 24px 0 32px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+          <img src="images/item_preview.jpg" alt="Automobile Billing & Workshop POS System - Official CodeCanyon Preview" style="width: 100%; height: auto; display: block; border-radius: var(--radius-md); object-fit: contain;">
+        </div>
+
+        <div class="callout callout-info" style="margin-bottom: 28px;">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          </div>
+          <div class="callout-body">
+            <div class="callout-title">Production-Ready CodeCanyon Architecture</div>
+            <p>Built with enterprise <strong>Laravel 12</strong>, Tailwind-styled responsive interfaces, and <strong>MySQL 5.7+ / 8.0+</strong>. Includes an automated 4-step web installer, 5 built-in invoice print layouts, unit conversions, WhatsApp customer alerts, and 1-click database backups.</p>
+          </div>
+        </div>
+
+        <h2 class="section-subtitle">Core System Highlights</h2>
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #f97316;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div class="feature-box-title">4-Step Web Installer</div>
+            <div class="feature-box-desc">Automated installation wizard checks PHP requirements, writable permissions, connects to MySQL, and migrates tables without touching command line.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #2563eb;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect width="12" height="8" x="6" y="14"></rect></svg>
+            </div>
+            <div class="feature-box-title">5 Print Layouts (80mm & A4)</div>
+            <div class="feature-box-desc">Built-in templates for Classic 80mm thermal receipt printers, Compact Pro (A4/A5), Creative Color, Detailed Corporate, and Modern Simple A4.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #10b981;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </div>
+            <div class="feature-box-title">WhatsApp Direct Invoicing</div>
+            <div class="feature-box-desc">1-click WhatsApp messaging dispatches invoice totals, due balances, and payment links directly to the client's mobile phone instantly.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #8b5cf6;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="feature-box-title">Spare Parts & Unit Conversion</div>
+            <div class="feature-box-desc">Track parts by Part Number, Brand, Category, and define sub-units (e.g., 1 Box = 10 Pcs, 1 Barrel = 200 LTR) with automatic inventory deduction.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #06b6d4;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            </div>
+            <div class="feature-box-title">Customer Ledgers & FIFO</div>
+            <div class="feature-box-desc">Maintains real-time debit/credit account balances, printable statements, and automatic FIFO chronological settlement of pending invoices.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #ec4899;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div class="feature-box-title">1-Click Backups & Utilities</div>
+            <div class="feature-box-desc">Create full SQL database dumps stored securely in non-public storage with instant download, restore tools, and app cache flushing.</div>
+          </div>
+        </div>
+
+        <hr class="divider">
+        <h2 class="section-subtitle">Quick Navigation Guide</h2>
+        <div class="articles-list">
+          <a href="#auto-requirements" class="article-card" data-view-target="auto-requirements">
+            <div class="article-card-left">
+              <span class="article-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+              <span class="article-title-text">2. Check Server Requirements</span>
+            </div>
+            <span class="article-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+          </a>
+          <a href="#auto-web-installer" class="article-card" data-view-target="auto-web-installer">
+            <div class="article-card-left">
+              <span class="article-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
+              <span class="article-title-text">3. Run the 4-Step Web Installation Wizard</span>
+            </div>
+            <span class="article-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+          </a>
+          <a href="#auto-credentials" class="article-card" data-view-target="auto-credentials">
+            <div class="article-card-left">
+              <span class="article-icon-wrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+              <span class="article-title-text">4. Default Login Credentials & Access</span>
+            </div>
+            <span class="article-card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+          </a>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this overview helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: REQUIREMENTS -->
+      <section class="view-panel" id="view-auto-requirements">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Server Requirements</span>
+        </nav>
+
+        <h1 class="page-title">Server Requirements & Compatibility</h1>
+        <p class="page-lead">
+          Ensure your web server or hosting environment satisfies the modern PHP & MySQL specifications outlined below before launching the installation.
+        </p>
+
+        <hr class="divider">
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Supported Versions</th>
+                <th>Requirement Level</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>PHP Version</strong></td>
+                <td><code>8.2.x</code>, <code>8.3.x</code>, <code>8.4+</code></td>
+                <td><span class="status-badge active">Mandatory</span></td>
+                <td>Fast and secure execution via PHP OPcache recommended.</td>
+              </tr>
+              <tr>
+                <td><strong>Database Engine</strong></td>
+                <td>MySQL 5.7+ / 8.0+ or MariaDB 10.3+</td>
+                <td><span class="status-badge active">Mandatory</span></td>
+                <td>InnoDB engine with utf8mb4 collation supported.</td>
+              </tr>
+              <tr>
+                <td><strong>Web Server</strong></td>
+                <td>Apache (with <code>mod_rewrite</code>) or Nginx</td>
+                <td><span class="status-badge active">Mandatory</span></td>
+                <td>Root <code>.htaccess</code> included for shared hosting redirection.</td>
+              </tr>
+              <tr>
+                <td><strong>Required PHP Extensions</strong></td>
+                <td>BCMath, Ctype, cURL, Fileinfo, GD, JSON, Mbstring, OpenSSL, PDO, PDO_MySQL, Tokenizer, XML</td>
+                <td><span class="status-badge active">Mandatory</span></td>
+                <td>Standard on 99% of shared hosts (cPanel, DirectAdmin, Plesk, RunCloud).</td>
+              </tr>
+              <tr>
+                <td><strong>Memory Limit</strong></td>
+                <td><code>memory_limit = 128M</code> (256M recommended)</td>
+                <td><span class="status-badge pending">Recommended</span></td>
+                <td>Ensures fast PDF receipt generation and backup exports.</td>
+              </tr>
+              <tr>
+                <td><strong>File Upload Limit</strong></td>
+                <td><code>upload_max_filesize = 16M</code></td>
+                <td><span class="status-badge pending">Recommended</span></td>
+                <td>Allows high-res company logo and vehicle attachment uploads.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+          <div class="callout-body">
+            <div class="callout-title">Automated Verification</div>
+            <p>You don't need to manually check these extensions! The included <strong>4-step Web Installer</strong> inspects every extension and permissions check automatically upon visiting <code>https://yourdomain.com/install</code>.</p>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: PACKAGE CONTENTS -->
+      <section class="view-panel" id="view-auto-package">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">What's in Download Package</span>
+        </nav>
+
+        <h1 class="page-title">What's Included in the Download Package</h1>
+        <p class="page-lead">
+          When downloading the zip archive from CodeCanyon / Envato Market, you will find the organized files structured as follows:
+        </p>
+
+        <hr class="divider">
+
+        <div class="code-block-wrap">
+          <div class="code-block-header">
+            <span class="code-lang">MASTER ZIP ARCHIVE STRUCTURE</span>
+            <button type="button" class="copy-btn" title="Copy structure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg> Copy</button>
+          </div>
+          <pre><code>Automobile_Billing_POS_v1.0.0/
+├── Main_Files/                 # Complete ready-to-deploy application source code
+│   ├── app/                    # Controllers, Models, Middleware, Helpers
+│   ├── bootstrap/              # App bootstrap cache & configs
+│   ├── config/                 # Laravel application settings
+│   ├── database/               # Database migrations & initial seeders
+│   ├── public/                 # Web root assets, CSS, JS, and file uploads
+│   ├── resources/              # Blade views, invoice print layouts, templates
+│   ├── routes/                 # Web application & installer route definitions
+│   ├── storage/                # Backups, session files, framework logs
+│   ├── .env.example            # Environment sample template
+│   ├── .htaccess               # Root Apache auto-redirection rules
+│   └── composer.json           # PHP dependencies & autoloader
+├── Documentation/              # Offline responsive HTML documentation portal
+│   ├── index.html              # Main documentation web app
+│   ├── css/style.css           # Styling & theme variables
+│   ├── js/app.js               # Interactive live search (Ctrl+K) & navigation
+│   └── images/                 # Product graphic banners & previews
+├── Database/
+│   └── database.sql            # Clean standalone SQL dump for manual import
+├── Material/                   # Promotional banners, app icon, thumbnail
+└── README.txt                  # Quick installation instructions & support links</code></pre>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: WEB INSTALLER -->
+      <section class="view-panel" id="view-auto-web-installer">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Web Installation Wizard</span>
+        </nav>
+
+        <h1 class="page-title">4-Step Web Installation Wizard</h1>
+        <p class="page-lead">
+          Deploy the entire software in under 3 minutes using the built-in graphical setup wizard without writing any command-line instructions.
+        </p>
+
+        <hr class="divider">
+
+        <div class="step-guide">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Upload & Extract Main Files</h3>
+              <p>Upload the contents of the <code>Main_Files</code> folder into your web hosting document root (e.g. <code>public_html/</code> or a subdomain directory such as <code>pos.yourdomain.com</code>).</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Access the Web Installer in Browser</h3>
+              <p>Open your browser and navigate to the installer URL:</p>
+              <div class="code-block-wrap" style="margin: 10px 0 16px;">
+                <div class="code-block-header">
+                  <span class="code-lang">BROWSER URL</span>
+                  <button type="button" class="copy-btn" title="Copy URL"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg> Copy</button>
+                </div>
+                <pre><code>https://yourdomain.com/install</code></pre>
+              </div>
+              <p>If you visit the root domain <code>https://yourdomain.com/</code> before installing, the system will automatically redirect you directly to the installation wizard.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Requirements & Permissions Verification</h3>
+              <p>The wizard automatically runs an internal diagnostic checklist:</p>
+              <ul>
+                <li>Validates PHP 8.2+ and all required extensions (BCMath, cURL, GD, Mbstring, PDO, OpenSSL, XML).</li>
+                <li>Verifies writable folder permissions for <code>storage/</code>, <code>bootstrap/cache/</code>, and <code>public/uploads/</code> (chmod <code>0755</code> or <code>0775</code>).</li>
+              </ul>
+              <p>Click <strong>"Continue Setup"</strong> once all green checkmarks appear.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>Database Connection & Administrator Account</h3>
+              <p>Supply your MySQL credentials created in your cPanel / hosting panel:</p>
+              <ul>
+                <li><strong>Database Host:</strong> usually <code>127.0.0.1</code> or <code>localhost</code></li>
+                <li><strong>Database Port:</strong> <code>3306</code></li>
+                <li><strong>Database Name:</strong> e.g., <code>u123_automobile_pos</code></li>
+                <li><strong>Database Username:</strong> e.g., <code>u123_dbuser</code></li>
+                <li><strong>Database Password:</strong> your secure database password</li>
+              </ul>
+              <p>Use the <strong>"Test Database Connection"</strong> button to confirm connection. Next, create your Administrator Username and Password.</p>
+              <p>Click <strong>"Run Installation"</strong>. The installer will write <code>.env</code>, generate <code>APP_KEY</code>, execute database migrations and seeders, create the admin user, and generate the lock file at <code>storage/installed</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-success" style="margin-top: 24px;">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div class="callout-body">
+            <div class="callout-title">Installation Complete!</div>
+            <p>You can now click <strong>"Go to Login"</strong> and access your dashboard at <code>https://yourdomain.com/login</code> using your new administrator credentials.</p>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: MANUAL CPANEL -->
+      <section class="view-panel" id="view-auto-cpanel-install">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Manual cPanel Install</span>
+        </nav>
+
+        <h1 class="page-title">Manual Installation via cPanel & phpMyAdmin</h1>
+        <p class="page-lead">
+          If you prefer manual database setup instead of the web installer wizard, follow this step-by-step procedure.
+        </p>
+
+        <hr class="divider">
+
+        <div class="step-guide">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Create MySQL Database & User</h3>
+              <p>Log into your cPanel &rarr; click <strong>MySQL Databases</strong>. Create a new database and database user with a strong password. Assign the user to the database with <strong>ALL PRIVILEGES</strong>.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>Import Standalone database.sql</h3>
+              <p>Open <strong>phpMyAdmin</strong> from cPanel, select your newly created database, click the <strong>Import</strong> tab at the top, choose the SQL file located in <code>Database/database.sql</code> from the master package, and click <strong>Go</strong>.</p>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Configure .env File</h3>
+              <p>In cPanel <strong>File Manager</strong>, locate <code>.env.example</code>, rename or copy it to <code>.env</code>, and edit your credentials:</p>
+              <div class="code-block-wrap">
+                <div class="code-block-header">
+                  <span class="code-lang">.env CONFIGURATION</span>
+                  <button type="button" class="copy-btn" title="Copy snippet"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg> Copy</button>
+                </div>
+                <pre><code>APP_NAME="Automobile Billing Software"
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://yourdomain.com
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_cpanel_db_name
+DB_USERNAME=your_cpanel_db_user
+DB_PASSWORD=your_cpanel_db_password</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h3>Lock the Installer</h3>
+              <p>Create an empty file named <code>installed</code> inside the <code>storage/</code> directory (i.e. <code>storage/installed</code>). This tells the application that the database is already prepared.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: VPS CLI -->
+      <section class="view-panel" id="view-auto-vps-install">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">VPS & Terminal CLI</span>
+        </nav>
+
+        <h1 class="page-title">VPS, Ubuntu & Terminal CLI Deployment</h1>
+        <p class="page-lead">
+          For sysadmins deploying on cloud instances (AWS EC2, DigitalOcean, Linode, Vultr, Hetzner), follow the standard artisan deployment commands below.
+        </p>
+
+        <hr class="divider">
+
+        <div class="code-block-wrap">
+          <div class="code-block-header">
+            <span class="code-lang">BASH CLI</span>
+            <button type="button" class="copy-btn" title="Copy CLI Commands"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg> Copy</button>
+          </div>
+          <pre><code># 1. Clone or extract project into web server directory
+cd /var/www/automobile-billing
+
+# 2. Configure environment file
+cp .env.example .env
+nano .env
+
+# 3. Generate production application key
+php artisan key:generate
+
+# 4. Run database migrations with standard seeders
+php artisan migrate --force --seed
+
+# 5. Link storage directory for public logos and barcodes
+php artisan storage:link
+
+# 6. Set directory ownership and permissions (www-data)
+sudo chown -R www-data:www-data storage bootstrap/cache public/uploads
+sudo chmod -R 775 storage bootstrap/cache public/uploads
+
+# 7. Mark installer as completed
+touch storage/installed
+
+# 8. Optimize application routes and config cache
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache</code></pre>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: CREDENTIALS -->
+      <section class="view-panel" id="view-auto-credentials">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Default Login Credentials</span>
+        </nav>
+
+        <h1 class="page-title">Default Login Credentials & Access</h1>
+        <p class="page-lead">
+          Use the credentials below if you set up the application by importing the standalone <code>database.sql</code> file.
+        </p>
+
+        <hr class="divider">
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Default Value</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Login URL</strong></td>
+                <td><code>https://yourdomain.com/login</code></td>
+                <td>Web Login Portal</td>
+              </tr>
+              <tr>
+                <td><strong>Super Administrator</strong></td>
+                <td><code>admin</code> / <code>admin123</code></td>
+                <td>Full System Access, ERP, Settings &amp; Reports</td>
+              </tr>
+              <tr>
+                <td><strong>Cashier / Staff Demo</strong></td>
+                <td><code>cashier</code> / <code>cashier123</code></td>
+                <td>POS Counter, Invoicing &amp; Customer Ledger</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-warning">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <div class="callout-body">
+            <div class="callout-title">Security Recommendation</div>
+            <p>Immediately after signing in for the first time, navigate to <strong>Settings &rarr; Profile</strong> and change your administrator username and password to prevent unauthorized access.</p>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 8: SETTINGS & CURRENCY -->
+      <section class="view-panel" id="view-auto-settings">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Store Settings & Multi-Currency</span>
+        </nav>
+
+        <h1 class="page-title">Store Configuration, Multi-Currency & Taxes</h1>
+        <p class="page-lead">
+          Under <strong>Settings &rarr; Company Settings</strong>, you can tailor your business branding and international accounting requirements.
+        </p>
+
+        <hr class="divider">
+
+        <h2 class="section-subtitle">Localization & Currency Setup</h2>
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Configuration Key</th>
+                <th>Options / Description</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Currency Symbol</strong></td>
+                <td>Enter any global currency symbol or ISO code</td>
+                <td><code>$</code>, <code>₹</code>, <code>€</code>, <code>£</code>, <code>AED</code>, <code>SAR</code>, <code>RM</code></td>
+              </tr>
+              <tr>
+                <td><strong>Currency Position</strong></td>
+                <td>Before Amount or After Amount</td>
+                <td><code>$150.00</code> vs <code>150.00 AED</code></td>
+              </tr>
+              <tr>
+                <td><strong>Tax Name / Label</strong></td>
+                <td>Customize tax nomenclature for compliance</td>
+                <td><code>Tax</code>, <code>GST (18%)</code>, <code>VAT</code>, <code>Sales Tax</code></td>
+              </tr>
+              <tr>
+                <td><strong>Invoice Prefix & Suffix</strong></td>
+                <td>Custom sequence formatting</td>
+                <td><code>INV-2026-</code> or <code>AUTO-POS-</code></td>
+              </tr>
+              <tr>
+                <td><strong>Invoice Footer Terms</strong></td>
+                <td>Warranty conditions & return policies</td>
+                <td>"Parts non-refundable after 7 days. Labor warranted for 30 days."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 9: 5 INVOICE LAYOUTS -->
+      <section class="view-panel" id="view-auto-invoice-layouts">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">5 Built-in Print Layouts</span>
+        </nav>
+
+        <h1 class="page-title">5 Built-in Invoice Layouts & Thermal Receipts</h1>
+        <p class="page-lead">
+          Under <strong>Settings &rarr; Invoice Templates</strong>, you can switch between 5 professionally formatted layouts tailored for thermal POS rolls and standard A4/A5 office printers.
+        </p>
+
+        <hr class="divider">
+
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color:#f97316;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect width="12" height="8" x="6" y="14"></rect></svg>
+            </div>
+            <div class="feature-box-title">1. Classic Thermal (80mm / 3-inch)</div>
+            <div class="feature-box-desc">Ultra-compact receipt format for thermal roll printers (Epson, Star, Xprinter, Rongta). Features auto-cutter padding, item totals, and store QR code.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color:#2563eb;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <div class="feature-box-title">2. Compact Professional (A4/A5)</div>
+            <div class="feature-box-desc">Crisp, structured corporate layout highlighting vehicle plate number, mileage/odometer readings, parts breakdown, and mechanics' signatures.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color:#10b981;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            </div>
+            <div class="feature-box-title">3. Creative Color (Modern A4)</div>
+            <div class="feature-box-desc">Modern vibrant theme with brand-accent color headers, rounded container borders, and prominent WhatsApp support contact blocks.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color:#6366f1;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect></svg>
+            </div>
+            <div class="feature-box-title">4. Detailed Corporate (A4 Traditional)</div>
+            <div class="feature-box-desc">Full accounting invoice displaying customer running balance, previous outstanding dues, current invoice subtotal, tax breakdown, and net payable.</div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color:#64748b;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+            </div>
+            <div class="feature-box-title">5. Modern Simple (A4 Minimalist)</div>
+            <div class="feature-box-desc">Clean, ink-saving monochrome layout with elegant typography and fast rendering for high-volume commercial printing.</div>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 10: INVENTORY -->
+      <section class="view-panel" id="view-auto-inventory">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Spare Parts & Inventory</span>
+        </nav>
+
+        <h1 class="page-title">Spare Parts & Inventory Management</h1>
+        <p class="page-lead">
+          Complete automotive spare parts tracking designed for both retail parts counters and garage service bays.
+        </p>
+
+        <hr class="divider">
+
+        <h2 class="section-subtitle">Inventory Highlights</h2>
+        <ul>
+          <li><strong>OEM & Aftermarket Part Numbers:</strong> Search and store items by original manufacturer Part Number (e.g. <code>04152-YZZA1</code>), Brand (Bosch, Denso, NGK, Mobil), and Model compatibility.</li>
+          <li><strong>Low Stock Threshold Alerts:</strong> Define minimum stock limits. When stock drops below the threshold, items are automatically highlighted on the dashboard widget.</li>
+          <li><strong>Barcode Sticker Generator:</strong> Print printable adhesive barcode labels with Part Number, Selling Price, and Barcode directly from the parts list.</li>
+          <li><strong>Bulk Import / Export via CSV:</strong> Upload thousands of parts in seconds using the Excel/CSV spreadsheet import tool.</li>
+        </ul>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 11: UNIT CONVERSION -->
+      <section class="view-panel" id="view-auto-unit-conversion">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Multi-Unit Conversion</span>
+        </nav>
+
+        <h1 class="page-title">Intelligent Multi-Unit Conversion Engine</h1>
+        <p class="page-lead">
+          Automotive workshops frequently buy inventory in bulk packages (boxes, cartons, barrels, drums) but sell items individually (pieces, litres, milliliters).
+        </p>
+
+        <hr class="divider">
+
+        <div class="callout callout-info">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          </div>
+          <div class="callout-body">
+            <div class="callout-title">How Unit Conversion Works</div>
+            <p>Under <strong>Inventory &rarr; Units</strong>, you can define base units and secondary conversion multipliers. For example:</p>
+            <ul>
+              <li><strong>Engine Oil:</strong> Base Unit = <code>Litre (LTR)</code>, Secondary Unit = <code>Barrel (200 LTR)</code></li>
+              <li><strong>Spark Plugs:</strong> Base Unit = <code>Pcs</code>, Secondary Unit = <code>Box (10 Pcs)</code></li>
+              <li><strong>Coolant:</strong> Base Unit = <code>ml</code>, Secondary Unit = <code>Bottle (1000 ml)</code></li>
+            </ul>
+            <p>When creating a purchase or selling in the POS, selecting "1 Box" of spark plugs automatically deducts <strong>10 Pcs</strong> from your base warehouse inventory!</p>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 12: POS & WHATSAPP -->
+      <section class="view-panel" id="view-auto-pos-invoicing">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">POS Billing & WhatsApp</span>
+        </nav>
+
+        <h1 class="page-title">POS Billing & Instant WhatsApp Invoice Sharing</h1>
+        <p class="page-lead">
+          Fast, keyboard-optimized checkout interface designed for busy repair counters and parts billing desks.
+        </p>
+
+        <hr class="divider">
+
+        <h2 class="section-subtitle">Billing Features</h2>
+        <ul>
+          <li><strong>Instant Live Search:</strong> Look up customers by Vehicle Registration Number, Phone, or Name; find parts by Name or Part Number in milliseconds.</li>
+          <li><strong>Drafts & Work Orders:</strong> Open vehicle work orders as Drafts while mechanics service the car, then finalize and bill once the job is approved.</li>
+          <li><strong>Split & Multi-Payment Modes:</strong> Accept Cash, Credit Card, UPI / QR, Online Transfer, or post to Customer Running Ledger (Credit).</li>
+          <li><strong>1-Click WhatsApp Dispatch:</strong> Click the WhatsApp icon on any invoice to automatically open WhatsApp Web or mobile app with a pre-filled message containing invoice number, balance due, and printable invoice link!</li>
+        </ul>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 13: CUSTOMER LEDGERS -->
+      <section class="view-panel" id="view-auto-customer-ledgers">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Customer Ledgers & FIFO</span>
+        </nav>
+
+        <h1 class="page-title">Customer Running Ledgers & FIFO Batch Allocation</h1>
+        <p class="page-lead">
+          Maintain transparent financial histories for fleet owners, corporate clients, and regular drivers.
+        </p>
+
+        <hr class="divider">
+
+        <h2 class="section-subtitle">How Customer Accounts Operate</h2>
+        <ul>
+          <li><strong>Real-Time Running Balance:</strong> Tracks every invoice, return credit, and received payment chronologically with a live net balance.</li>
+          <li><strong>Printable Account Statements:</strong> Generate date-filtered PDF account statements with opening balance, debit transactions, credits, and net closing balance.</li>
+          <li><strong>FIFO Batch Settlement:</strong> When a customer makes a lump-sum payment (e.g. $500 towards multiple past unpaid bills), the intelligent FIFO (First In, First Out) engine automatically settles the oldest unpaid invoices first!</li>
+        </ul>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 14: BACKUPS -->
+      <section class="view-panel" id="view-auto-backups">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Backups & Utilities</span>
+        </nav>
+
+        <h1 class="page-title">1-Click Database Backups & System Utilities</h1>
+        <p class="page-lead">
+          Protect critical business records and optimize server performance right from the administrator control panel.
+        </p>
+
+        <hr class="divider">
+
+        <h2 class="section-subtitle">Database Backups</h2>
+        <p>Under <strong>Settings &rarr; Database Backups</strong>:</p>
+        <ul>
+          <li>Create complete SQL dumps with a single click.</li>
+          <li>Backups are stored safely outside the web root at <code>storage/app/backups/</code> to protect customer data from web discovery.</li>
+          <li>Download backups securely or restore them with 1-click verification.</li>
+        </ul>
+
+        <h2 class="section-subtitle" style="margin-top: 28px;">System Utilities & Cache Clearing</h2>
+        <p>Under <strong>Settings &rarr; System Utilities</strong>:</p>
+        <ul>
+          <li>Clear Application Cache, Route Cache, and Blade View Cache instantly after modifying settings.</li>
+          <li>Inspect server environment details, PHP version, MySQL version, and server memory consumption.</li>
+        </ul>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 15: TROUBLESHOOTING -->
+      <section class="view-panel" id="view-auto-troubleshooting">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Troubleshooting</span>
+        </nav>
+
+        <h1 class="page-title">Troubleshooting & Error Solutions</h1>
+        <p class="page-lead">
+          Solutions to the most common configuration and hosting inquiries.
+        </p>
+
+        <hr class="divider">
+
+        <div class="faq-list">
+          <div class="faq-card open">
+            <button type="button" class="faq-header">
+              <span class="faq-question">1. I see a 500 Internal Server Error after uploading.</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>In 95% of cases, this is caused by incorrect directory permissions. Open your cPanel File Manager and ensure the following folders are set to <code>0755</code> (or <code>0775</code>):</p>
+              <ul>
+                <li><code>storage/</code> (and all subfolders)</li>
+                <li><code>bootstrap/cache/</code></li>
+                <li><code>public/uploads/</code></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button type="button" class="faq-header">
+              <span class="faq-question">2. Images or uploaded logos are not visible.</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>Uploaded images are saved in <code>public/uploads/</code>. Ensure that the <code>public/uploads/</code> folder is writable (chmod <code>0755</code>). On a VPS terminal, also run <code>php artisan storage:link</code>.</p>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button type="button" class="faq-header">
+              <span class="faq-question">3. How do I re-run the Web Installer?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>To restart the installation wizard from scratch, simply delete the lock file at <code>storage/installed</code>, then visit <code>https://yourdomain.com/install</code> in your web browser.</p>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button type="button" class="faq-header">
+              <span class="faq-question">4. My server doesn't point to the public folder.</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>The application already includes an Apache root <code>.htaccess</code> file that automatically routes incoming traffic into the <code>public/</code> folder on shared hosting without any manual subdomain configuration.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 16: FAQ -->
+      <section class="view-panel" id="view-auto-faq">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">FAQ</span>
+        </nav>
+
+        <h1 class="page-title">Frequently Asked Questions (FAQ)</h1>
+        <p class="page-lead">
+          Quick answers to pre-purchase and post-installation inquiries.
+        </p>
+
+        <hr class="divider">
+
+        <div class="faq-list">
+          <div class="faq-card open">
+            <button type="button" class="faq-header">
+              <span class="faq-question">What hardware is compatible with this POS?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>The system is compatible with standard USB, Bluetooth, and network thermal receipt printers (80mm / 58mm), USB handheld barcode scanners, electronic cash drawers (RJ11 via thermal printer), and standard desktop / laptop / tablet browsers.</p>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button type="button" class="faq-header">
+              <span class="faq-question">Can I use this on localhost (XAMPP / WampServer)?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>Yes! It runs smoothly on XAMPP, WAMP, Laragon, or MAMP on Windows / macOS / Linux with PHP 8.2+ and MySQL enabled.</p>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button type="button" class="faq-header">
+              <span class="faq-question">Can I customize the source code?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="faq-body">
+              <p>100% of the Laravel source code is unencrypted and open. You can add custom fields, customize blade views, add new payment gateways, or modify business logic as needed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 17: CHANGELOG -->
+      <section class="view-panel" id="view-auto-changelog">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Changelog</span>
+        </nav>
+
+        <h1 class="page-title">Version History & Release Notes</h1>
+        <p class="page-lead">
+          Explore new features, improvements, and fixes across versions.
+        </p>
+
+        <hr class="divider">
+
+        <div class="changelog-entry">
+          <div class="changelog-header">
+            <span class="version-tag">v1.0.0</span>
+            <span class="release-date">September 2026</span>
+            <span class="status-badge active" style="margin-left: auto;">Current Stable</span>
+          </div>
+          <ul class="changelog-list">
+            <li><strong>Automated Web Installer:</strong> Added 4-step interactive setup wizard (<code>/install</code>) checking PHP extensions, folder permissions, and migrating MySQL automatically.</li>
+            <li><strong>Multi-Currency Engine:</strong> Dynamic international currency symbol configuration, symbol position (before/after), and custom tax labelling (GST, VAT, Tax).</li>
+            <li><strong>5 Built-in Print Layouts:</strong> Added Classic Thermal 80mm roll, Compact Pro A4/A5, Creative Color, Detailed Corporate, and Modern Simple templates.</li>
+            <li><strong>System Utilities:</strong> Added 1-click cache clearing (config, routes, views) and environment diagnostics under Settings.</li>
+            <li><strong>Enhanced Backup Security:</strong> Relocated SQL database backups outside public document root to <code>storage/app/backups/</code>.</li>
+            <li><strong>Apache Root Routing:</strong> Added root <code>.htaccess</code> ensuring seamless redirection into <code>public/</code> on shared cPanel hosting.</li>
+          </ul>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 18: AUTHOR SUPPORT -->
+      <section class="view-panel" id="view-auto-support">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Author Support</span>
+        </nav>
+
+        <h1 class="page-title">Author Technical Support & Helpdesk</h1>
+        <p class="page-lead">
+          Need help installing, configuring, or customizing? We are here to ensure your deployment succeeds.
+        </p>
+
+        <hr class="divider">
+
+        <div class="feature-grid">
+          <div class="feature-box" style="border: 2px solid #22c55e;">
+            <div class="feature-box-icon" style="color: #22c55e;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </div>
+            <div class="feature-box-title">WhatsApp Priority Support</div>
+            <div class="feature-box-desc" style="font-size: 15px; font-weight: 700; color: #16a34a; margin: 8px 0;">+91 6002552415</div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Fastest 1-on-1 direct technical assistance with the development author.</p>
+            <a href="https://wa.me/916002552415?text=Hello%2C%20I%20need%20support%20for%20Automobile%20Billing%20POS" target="_blank" class="search-trigger-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:8px; background: #22c55e; color: #fff; border:none; padding:8px 16px; border-radius:6px; font-weight:700;">
+              Chat on WhatsApp &rarr;
+            </a>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-box-icon" style="color: #2563eb;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div class="feature-box-title">Envato / CodeCanyon Ticket Helpdesk</div>
+            <div class="feature-box-desc">Submit an official support query via our CodeCanyon item page for author resolution within 24 business hours.</div>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 19: SOURCES & CREDITS -->
+      <section class="view-panel" id="view-auto-credits">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#auto-overview" class="breadcrumb-link" data-view-target="auto-overview">Automobile POS</a>
+          <span class="breadcrumb-separator"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></span>
+          <span class="breadcrumb-current">Sources &amp; Credits</span>
+        </nav>
+
+        <h1 class="page-title">Third-Party Sources, Assets &amp; Licensing Credits</h1>
+        <p class="page-lead">
+          In strict compliance with Envato CodeCanyon submission guidelines, all third-party open-source libraries, frameworks, fonts, and assets used in this software are listed below with their respective authors and licenses.
+        </p>
+
+        <hr class="divider">
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Library / Asset</th>
+                <th>Author / Project</th>
+                <th>Website / Repository</th>
+                <th>License Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Laravel Framework (v12)</strong></td>
+                <td>Taylor Otwell &amp; Laravel Community</td>
+                <td><a href="https://laravel.com" target="_blank" rel="noopener">laravel.com</a></td>
+                <td><span class="badge" style="background:rgba(34,197,94,0.15); color:#16a34a; padding:3px 8px; border-radius:4px; font-weight:600;">MIT License</span></td>
+              </tr>
+              <tr>
+                <td><strong>Chart.js</strong></td>
+                <td>Chart.js Contributors</td>
+                <td><a href="https://www.chartjs.org" target="_blank" rel="noopener">chartjs.org</a></td>
+                <td><span class="badge" style="background:rgba(34,197,94,0.15); color:#16a34a; padding:3px 8px; border-radius:4px; font-weight:600;">MIT License</span></td>
+              </tr>
+              <tr>
+                <td><strong>Ace Code Editor</strong></td>
+                <td>Ajax.org B.V.</td>
+                <td><a href="https://ace.c9.io" target="_blank" rel="noopener">ace.c9.io</a></td>
+                <td><span class="badge" style="background:rgba(59,130,246,0.15); color:#2563eb; padding:3px 8px; border-radius:4px; font-weight:600;">BSD License</span></td>
+              </tr>
+              <tr>
+                <td><strong>Quill Rich Text Editor</strong></td>
+                <td>Slab</td>
+                <td><a href="https://quilljs.com" target="_blank" rel="noopener">quilljs.com</a></td>
+                <td><span class="badge" style="background:rgba(59,130,246,0.15); color:#2563eb; padding:3px 8px; border-radius:4px; font-weight:600;">BSD-3-Clause</span></td>
+              </tr>
+              <tr>
+                <td><strong>Plus Jakarta Sans Font</strong></td>
+                <td>Tokotype</td>
+                <td><a href="https://github.com/tokotype/PlusJakartaSans" target="_blank" rel="noopener">github.com/tokotype/PlusJakartaSans</a></td>
+                <td><span class="badge" style="background:rgba(168,85,247,0.15); color:#9333ea; padding:3px 8px; border-radius:4px; font-weight:600;">SIL OFL 1.1</span></td>
+              </tr>
+              <tr>
+                <td><strong>Inter Font Family</strong></td>
+                <td>Rasmus Andersson</td>
+                <td><a href="https://rsms.me/inter/" target="_blank" rel="noopener">rsms.me/inter</a></td>
+                <td><span class="badge" style="background:rgba(168,85,247,0.15); color:#9333ea; padding:3px 8px; border-radius:4px; font-weight:600;">SIL OFL 1.1</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lucide / UI SVG Icons</strong></td>
+                <td>Lucide Contributors</td>
+                <td><a href="https://lucide.dev" target="_blank" rel="noopener">lucide.dev</a></td>
+                <td><span class="badge" style="background:rgba(34,197,94,0.15); color:#16a34a; padding:3px 8px; border-radius:4px; font-weight:600;">MIT License</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-success" style="margin-top: 24px;">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div class="callout-body">
+            <div class="callout-title">100% Commercial Compliance</div>
+            <p>All included third-party libraries and fonts are distributed under permissive, commercially compatible open-source licenses (MIT, BSD, SIL Open Font License). No copyleft or restrictive licenses (such as GPLv3) are utilized, ensuring complete compliance for both Regular and Extended Envato licenses.</p>
+          </div>
+        </div>
+
+        <div class="feedback-widget">
+          <span class="feedback-text">Was this helpful?</span>
+          <div class="feedback-actions">
+            <button type="button" class="feedback-btn feedback-yes">👍 Yes</button>
+            <button type="button" class="feedback-btn feedback-no">👎 No</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-modal-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Search Documentation">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search Automobile POS guides, installer, inventory..." autocomplete="off">
+        <span class="search-esc-badge">ESC</span>
+        <button type="button" class="search-modal-close" id="searchModalClose" aria-label="Close search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+      <div class="search-results-list" id="searchResults">
+        <!-- Results injected dynamically via JS -->
+      </div>
+      <div class="search-footer">
+        <span>Navigation: <kbd class="search-kbd">&#8593;</kbd> <kbd class="search-kbd">&#8595;</kbd> to select</span>
+        <span>Select: <kbd class="search-kbd">ENTER</kbd></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTopBtn" aria-label="Scroll back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m18 15-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Modular App Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>

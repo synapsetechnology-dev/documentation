@@ -3,8 +3,8 @@
 A modern, responsive, high-performance HTML/CSS/JS documentation website designed specifically for digital product upload on **CodeCanyon / Envato Market**.
 
 Modeled faithfully on the clean tech documentation aesthetic, featuring:
-- **Exact Layout & Typography**: Matches the minimalist UI with sidebar navigation, breadcrumbs, article cards (`↗`), and interactive FAQ accordions.
-- **Collapsible Sidebar**: Multi-level accordion menu with category chevrons and active view highlights.
+- **Exact Layout & Modern Typography**: Clean UI with sidebar navigation, breadcrumbs, article cards, and interactive FAQ accordions.
+- **Responsive Off-Canvas Sidebar**: Collapsible multi-level accordion menu with category chevrons, active view highlights, and dedicated mobile drawer with touch close button.
 - **Interactive Live Search (Ctrl+K)**: Instant search modal with keyboard navigation (`↑`, `↓`, `Enter`, `Esc`) indexing all articles and FAQs.
 - **Dark & Light Mode**: Built-in theme switcher with smooth transitions and `localStorage` persistence.
 - **One-Click Code Copy**: Copy button with toast notifications for code snippets and bash commands.
@@ -14,23 +14,29 @@ Modeled faithfully on the clean tech documentation aesthetic, featuring:
 
 ---
 
-## 📁 File Structure
+## File Structure
 
 ```text
 Synapse Documentation/
-├── index.html               # Main documentation web app
+├── index.html                                        # Main documentation web app
 ├── css/
-│   └── style.css            # Clean, vanilla CSS stylesheet with CSS variables
+│   └── style.css                                     # Clean, vanilla CSS stylesheet with CSS variables
 ├── js/
-│   └── app.js               # Lightweight modular vanilla JavaScript logic
+│   └── app.js                                        # Lightweight modular vanilla JavaScript logic
 ├── Images/
-│   └── synapse-banner.jpg   # High-resolution SaaS dashboard banner
-└── README.md                # Documentation guide and customization instructions
+│   └── synapse-banner.jpg                            # High-resolution SaaS dashboard banner
+├── Automobile-Billing-Inventory-Management-Software/ # Dedicated Automobile POS product documentation
+│   ├── index.html                                    # Product documentation web app
+│   ├── css/style.css                                 # Stylesheet
+│   ├── js/app.js                                     # Logic & search registry
+│   ├── images/                                       # Product banners & graphics
+│   └── README.md                                     # Product documentation guide
+└── README.md                                         # Documentation guide and customization instructions
 ```
 
 ---
 
-## 🚀 How to Run & Preview
+## How to Run & Preview
 
 ### Option 1: Direct File Preview
 Simply double-click `index.html` in your file explorer to open it in Chrome, Edge, Firefox, or Safari.
@@ -38,27 +44,18 @@ Simply double-click `index.html` in your file explorer to open it in Chrome, Edg
 ### Option 2: Local HTTP Server
 Run any local server from the root directory:
 ```bash
-# Python
-python -m http.server 8080
+# PHP
+php -S 127.0.0.1:8000
 
 # Or Node.js
 npx serve .
 ```
-Then visit `http://localhost:8080` in your web browser.
 
 ---
 
-## 📦 Bundling for CodeCanyon Upload
+## Bundling for CodeCanyon Upload
 
 When preparing your final zip file for CodeCanyon:
 1. Include this entire folder as `Documentation/` inside your master zip archive.
 2. In your root `README.txt`, instruct buyers:
    > *"To view the product documentation, open `Documentation/index.html` in any web browser."*
-
----
-
-## 🎨 Customizing for Your Product
-
-- **Brand Name & Logo**: Edit the `<header>` in `index.html` to update the brand text and SVG logo.
-- **Colors & Styling**: Modify the CSS variables at the top of `css/style.css` (e.g. `--primary: #2563eb;`).
-- **Adding New Articles**: Add an entry to the `searchRegistry` array in `js/app.js` and a corresponding `<section class="view-panel" id="view-your-id">` in `index.html`.

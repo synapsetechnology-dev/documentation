@@ -17,81 +17,60 @@
   // Search Data Registry (Articles and FAQs)
   const searchRegistry = [
     {
-      id: 'getting-started',
-      title: 'Getting Started',
-      category: 'Overview',
-      snippet: 'Welcome to Synapse Technology platform documentation. Explore quick setup guides and foundational concepts.',
-      targetView: 'getting-started'
+      id: 'automobile-portal',
+      title: 'Automobile Billing & Workshop POS Documentation Portal',
+      category: 'Documentation Portal',
+      snippet: 'Dedicated offline portal: 4-step web installer wizard, 5 invoice layouts, touchscreen POS, multi-unit stock, WhatsApp messaging.',
+      targetView: 'Automobile-Billing-Inventory-Management-Software/index.html'
     },
     {
-      id: 'what-is-synapse',
-      title: 'What is Synapse?',
-      category: 'Getting Started',
-      snippet: 'Synapse is an AI-powered SaaS and workflow automation platform built for high-performance CodeCanyon deployments.',
-      targetView: 'view-what-is-synapse'
+      id: 'automobile-billing',
+      title: 'Automobile Billing & Workshop POS System (v1.0.0)',
+      category: 'Featured Product',
+      snippet: 'Workshop POS, spare parts inventory, WhatsApp invoicing, 5 invoice layouts, and 4-step web installer.',
+      targetView: 'view-automobile-billing'
     },
     {
-      id: 'how-it-works',
-      title: 'How it Works',
-      category: 'Getting Started',
-      snippet: 'Understand the core architecture, reactive event dispatchers, database schemas, and background worker queues.',
-      targetView: 'view-how-it-works'
+      id: 'automobile-web-installer',
+      title: 'Automobile POS: 4-Step Web Installer Wizard',
+      category: 'Installation',
+      snippet: 'Setup wizard for Automobile Billing software: validates PHP, MySQL, permissions, and creates admin.',
+      targetView: 'Automobile-Billing-Inventory-Management-Software/index.html#auto-web-installer'
     },
     {
-      id: 'quick-start',
-      title: 'Quick Start',
-      category: 'Getting Started',
-      snippet: 'Get up and running in under 5 minutes with our automated installation wizard and initial configuration.',
-      targetView: 'view-quick-start'
+      id: 'automobile-pos-invoicing',
+      title: 'Automobile POS: 5 Invoice Print Layouts & POS',
+      category: 'Billing & POS',
+      snippet: 'Thermal 80mm POS receipt, Compact Pro A4/A5, Creative Color, Detailed Corporate, and Modern Simple print formats.',
+      targetView: 'Automobile-Billing-Inventory-Management-Software/index.html#auto-pos-invoicing'
     },
     {
-      id: 'syncing-tools',
-      title: 'Syncing Your Tools',
-      category: 'Customization',
-      snippet: 'Connect external webhooks, configure background cron synchronization, and map incoming payload schemas.',
-      targetView: 'view-syncing-tools'
+      id: 'automobile-inventory',
+      title: 'Automobile POS: Spare Parts & Multi-Unit Conversion',
+      category: 'Inventory',
+      snippet: 'Manage OEM/aftermarket parts, units conversion (Box to Pcs, Barrels to Litres), and barcode printing.',
+      targetView: 'Automobile-Billing-Inventory-Management-Software/index.html#auto-inventory'
     },
     {
-      id: 'builder',
-      title: 'Introduction to the Builder',
-      category: 'Customization',
-      snippet: 'Learn how to use the drag-and-drop workflow canvas and modular UI customizer included with Synapse.',
-      targetView: 'view-builder'
+      id: 'production-deployment',
+      title: 'Production Deployment & Server Guide',
+      category: 'Production',
+      snippet: 'Step-by-step production go-live guide: server checklist, Nginx virtual host, cPanel setup, Supervisor workers, and cron jobs.',
+      targetView: 'view-production'
     },
     {
-      id: 'connecting-tools',
-      title: 'Connecting Third Party Tools',
-      category: 'Customization',
-      snippet: 'Set up Stripe, PayPal, SMTP mailers, OpenAI GPT-4o, and Google Gemini API credentials.',
-      targetView: 'view-connecting-tools'
+      id: 'production-nginx',
+      title: 'Production: Nginx & PHP 8.2-FPM Configuration',
+      category: 'Production',
+      snippet: 'Nginx virtualhost server block configuration with Gzip, SSL, security headers, and FastCGI timeouts.',
+      targetView: 'view-production'
     },
     {
-      id: 'installation',
-      title: 'Installation & Requirements',
-      category: 'Advanced Features',
-      snippet: 'Server requirements: PHP 8.2+, MySQL 8.0, Apache/Nginx, SSL certificates, and folder permission setup.',
-      targetView: 'view-installation'
-    },
-    {
-      id: 'understanding-integrations',
-      title: 'Understanding Integrations',
-      category: 'Advanced Features',
-      snippet: 'Explore REST API endpoints, bearer token authentication headers, webhooks, and rate limiting rules.',
-      targetView: 'view-understanding-integrations'
-    },
-    {
-      id: 'faq',
-      title: 'Frequently Asked Questions (FAQ)',
-      category: 'Support',
-      snippet: 'Comprehensive answers to common questions about licenses, customization, updates, and troubleshooting.',
-      targetView: 'faq'
-    },
-    {
-      id: 'support',
-      title: 'Item Support & Helpdesk (+91 6002552415)',
-      category: 'Support',
-      snippet: 'Official CodeCanyon item support, WhatsApp priority assistance (+91 6002552415), and tickets.',
-      targetView: 'view-contributions'
+      id: 'production-supervisor',
+      title: 'Production: Supervisor Queue Workers & Cron Scheduler',
+      category: 'Production',
+      snippet: 'Configure background queue workers via Supervisor and automated crontab scheduled tasks.',
+      targetView: 'view-production'
     },
     {
       id: 'whatsapp-support',
@@ -103,16 +82,23 @@
     {
       id: 'license-verification',
       title: 'Envato Purchase Code Verification',
-      category: 'Community',
+      category: 'Support',
       snippet: 'How to locate your Envato purchase code and activate automatic 1-click updates in the admin dashboard.',
       targetView: 'view-license-verification'
     },
     {
       id: 'changelog',
       title: 'Changelog & Updates',
-      category: 'Community',
+      category: 'Changelog',
       snippet: 'Full version history, new features, bug fixes, and upgrade migration guides.',
       targetView: 'view-changelog'
+    },
+    {
+      id: 'faq',
+      title: 'Frequently Asked Questions (FAQ)',
+      category: 'Support',
+      snippet: 'Comprehensive answers to common questions about licenses, customization, updates, and troubleshooting.',
+      targetView: 'faq'
     }
   ];
 
@@ -134,7 +120,10 @@
     backToTopBtn: document.getElementById('backToTopBtn'),
     toast: document.getElementById('toast'),
     copyButtons: document.querySelectorAll('.copy-btn'),
-    feedbackButtons: document.querySelectorAll('.feedback-btn')
+    feedbackButtons: document.querySelectorAll('.feedback-btn'),
+    productsDropdown: document.getElementById('productsDropdown'),
+    productsDropdownBtn: document.getElementById('productsDropdownBtn'),
+    productsDropdownMenu: document.getElementById('productsDropdownMenu')
   };
 
   /**
@@ -142,6 +131,7 @@
    */
   function init() {
     initTheme();
+    initProductsDropdown();
     initSidebarAccordions();
     initFaqAccordions();
     initRouting();
@@ -183,6 +173,48 @@
     DOM.themeToggleBtn.innerHTML = isDark
       ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>`
       : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path><path d="M19 3v4M21 5h-4" stroke-width="1.75"></path></svg>`;
+  }
+
+  /**
+   * Header Products Dropdown Interaction
+   */
+  function initProductsDropdown() {
+    if (!DOM.productsDropdownBtn || !DOM.productsDropdown) return;
+
+    // Toggle on button click
+    DOM.productsDropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = DOM.productsDropdown.classList.contains('open');
+      DOM.productsDropdown.classList.toggle('open', !isOpen);
+      DOM.productsDropdownBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    // Close when clicking any link inside dropdown
+    if (DOM.productsDropdownMenu) {
+      DOM.productsDropdownMenu.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link) {
+          DOM.productsDropdown.classList.remove('open');
+          DOM.productsDropdownBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!DOM.productsDropdown.contains(e.target)) {
+        DOM.productsDropdown.classList.remove('open');
+        DOM.productsDropdownBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && DOM.productsDropdown.classList.contains('open')) {
+        DOM.productsDropdown.classList.remove('open');
+        DOM.productsDropdownBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
   }
 
   /**
@@ -246,8 +278,24 @@
   }
 
   function switchView(viewId, updateHash = true) {
+    if (viewId && (viewId.includes('.html') || viewId.startsWith('http'))) {
+      window.location.href = viewId;
+      return;
+    }
     if (viewId === 'support' || viewId === 'view-support') {
       viewId = 'view-contributions';
+    }
+    if (viewId === 'customization') {
+      viewId = 'view-syncing-tools';
+    }
+    if (viewId === 'products' || viewId === 'product' || viewId === 'automobile-billing') {
+      viewId = 'view-automobile-billing';
+    }
+    if (viewId === 'home' || viewId === 'view-home') {
+      viewId = 'getting-started';
+    }
+    if (viewId === 'production' || viewId === 'view-production' || viewId === 'prod-checklist' || viewId === 'prod-installer' || viewId === 'prod-env' || viewId === 'prod-nginx' || viewId === 'prod-cpanel' || viewId === 'prod-workers') {
+      viewId = 'view-production';
     }
 
     let targetPanel = document.getElementById(viewId);
@@ -289,13 +337,11 @@
   }
 
   function updateActiveSidebarLink(viewId) {
+    const normView = (viewId || '').replace(/^view-/, '');
+
     document.querySelectorAll('.nav-item-link').forEach(link => {
-      const linkTarget = link.getAttribute('data-view-target');
-      if (
-        linkTarget === viewId ||
-        linkTarget === 'view-' + viewId ||
-        linkTarget.replace('view-', '') === viewId
-      ) {
+      const linkTarget = (link.getAttribute('data-view-target') || '').replace(/^view-/, '');
+      if (linkTarget && linkTarget === normView) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -304,22 +350,44 @@
 
     // Update Top Navigation Links
     document.querySelectorAll('.nav-link').forEach(link => {
-      const linkTarget = link.getAttribute('data-view-target');
-      if (linkTarget === viewId || linkTarget === 'view-' + viewId || linkTarget.replace('view-', '') === viewId) {
+      const linkTarget = (link.getAttribute('data-view-target') || '').replace(/^view-/, '');
+      if (linkTarget && linkTarget === normView) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
       }
     });
+
+    // Special check for products dropdown button
+    if (DOM.productsDropdownBtn) {
+      if (normView === 'automobile-billing') {
+        DOM.productsDropdownBtn.classList.add('active');
+      } else {
+        DOM.productsDropdownBtn.classList.remove('active');
+      }
+    }
   }
 
   function expandSidebarSectionForView(viewId) {
-    const activeLink = document.querySelector(`.nav-item-link[data-view-target="${viewId}"], .nav-item-link[data-view-target="view-${viewId}"]`);
+    const normView = (viewId || '').replace(/^view-/, '');
+    const activeLink = document.querySelector(`.nav-item-link[data-view-target="${viewId}"], .nav-item-link[data-view-target="view-${normView}"], .nav-item-link[data-view-target="${normView}"]`);
     if (activeLink) {
       const section = activeLink.closest('.nav-section');
-      if (section && section.classList.contains('collapsed')) {
+      if (section) {
         section.classList.remove('collapsed');
         section.classList.add('open');
+      }
+    } else if (normView === 'getting-started') {
+      const homeSec = document.getElementById('sec-getting-started');
+      if (homeSec) {
+        homeSec.classList.remove('collapsed');
+        homeSec.classList.add('open');
+      }
+    } else if (normView === 'automobile-billing') {
+      const autoSec = document.getElementById('sec-automobile-billing');
+      if (autoSec) {
+        autoSec.classList.remove('collapsed');
+        autoSec.classList.add('open');
       }
     }
   }
@@ -364,14 +432,20 @@
   }
 
   function openSearchModal() {
-    DOM.searchModalBackdrop.classList.add('open');
-    DOM.searchInput.value = '';
-    DOM.searchInput.focus();
-    renderSearchResults(searchRegistry);
+    if (!DOM.searchModalBackdrop) return;
+    DOM.searchModalBackdrop.classList.add('open', 'active');
+    document.body.style.overflow = 'hidden';
+    if (DOM.searchInput) {
+      DOM.searchInput.value = '';
+      setTimeout(() => DOM.searchInput.focus(), 50);
+      renderSearchResults(searchRegistry);
+    }
   }
 
   function closeSearchModal() {
-    DOM.searchModalBackdrop.classList.remove('open');
+    if (!DOM.searchModalBackdrop) return;
+    DOM.searchModalBackdrop.classList.remove('open', 'active');
+    document.body.style.overflow = '';
   }
 
   function handleSearchInput(e) {
@@ -544,20 +618,38 @@
     if (DOM.mobileMenuBtn) {
       DOM.mobileMenuBtn.addEventListener('click', toggleMobileSidebar);
     }
+    const closeBtn = document.getElementById('sidebarCloseBtn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMobileSidebar);
+    }
     if (DOM.sidebarBackdrop) {
       DOM.sidebarBackdrop.addEventListener('click', closeMobileSidebar);
     }
+    document.querySelectorAll('.nav-item-link').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileSidebar();
+      });
+    });
   }
 
   function toggleMobileSidebar() {
+    if (!DOM.sidebar) return;
     const isOpen = DOM.sidebar.classList.toggle('mobile-open');
-    DOM.sidebarBackdrop.classList.toggle('active', isOpen);
+    DOM.sidebar.classList.toggle('open', isOpen);
+    if (DOM.sidebarBackdrop) {
+      DOM.sidebarBackdrop.classList.toggle('active', isOpen);
+      DOM.sidebarBackdrop.classList.toggle('open', isOpen);
+    }
     document.body.classList.toggle('drawer-open', isOpen);
   }
 
   function closeMobileSidebar() {
-    if (DOM.sidebar) DOM.sidebar.classList.remove('mobile-open');
-    if (DOM.sidebarBackdrop) DOM.sidebarBackdrop.classList.remove('active');
+    if (DOM.sidebar) {
+      DOM.sidebar.classList.remove('mobile-open', 'open');
+    }
+    if (DOM.sidebarBackdrop) {
+      DOM.sidebarBackdrop.classList.remove('active', 'open');
+    }
     document.body.classList.remove('drawer-open');
   }
 
