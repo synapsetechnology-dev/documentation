@@ -87,10 +87,17 @@
       targetView: 'faq'
     },
     {
-      id: 'contributions',
-      title: 'Contributions & Support',
-      category: 'Community',
-      snippet: 'Official CodeCanyon item support policy, opening helpdesk tickets, and community Discord links.',
+      id: 'support',
+      title: 'Item Support & Helpdesk (+91 6002552415)',
+      category: 'Support',
+      snippet: 'Official CodeCanyon item support, WhatsApp priority assistance (+91 6002552415), and tickets.',
+      targetView: 'view-contributions'
+    },
+    {
+      id: 'whatsapp-support',
+      title: 'WhatsApp Technical Support (+91 6002552415)',
+      category: 'Support',
+      snippet: 'Fastest 1-on-1 technical assistance and author support via WhatsApp at +91 6002552415.',
       targetView: 'view-contributions'
     },
     {
@@ -239,6 +246,10 @@
   }
 
   function switchView(viewId, updateHash = true) {
+    if (viewId === 'support' || viewId === 'view-support') {
+      viewId = 'view-contributions';
+    }
+
     let targetPanel = document.getElementById(viewId);
     
     // Support without "view-" prefix
@@ -483,7 +494,8 @@
   function initCopyCode() {
     document.querySelectorAll('.copy-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const codeBlock = btn.closest('.code-block-wrapper').querySelector('code, pre');
+        const wrapper = btn.closest('.code-block-wrapper') || btn.closest('.code-block-wrap');
+        const codeBlock = wrapper ? wrapper.querySelector('code, pre') : null;
         if (!codeBlock) return;
 
         const codeText = codeBlock.innerText;
@@ -494,7 +506,10 @@
             <span style="color:#10b981;font-weight:600;">Copied!</span>
           `;
 
-          showToast('Code copied to clipboard!');
+          const msg = btn.getAttribute('data-action') === 'copy-support-template'
+            ? 'Support template copied to clipboard!'
+            : 'Code copied to clipboard!';
+          showToast(msg);
 
           setTimeout(() => {
             btn.innerHTML = originalHTML;
