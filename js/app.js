@@ -26,9 +26,9 @@
     {
       id: 'automobile-billing',
       title: 'Automobile Billing & Workshop POS System (v1.0.0)',
-      category: 'Featured Product',
+      category: 'Documentation Portal',
       snippet: 'Workshop POS, spare parts inventory, WhatsApp invoicing, 5 invoice layouts, and 4-step web installer.',
-      targetView: 'view-automobile-billing'
+      targetView: 'Automobile-Billing-Inventory-Management-Software/index.html'
     },
     {
       id: 'automobile-web-installer',
@@ -288,8 +288,9 @@
     if (viewId === 'customization') {
       viewId = 'view-syncing-tools';
     }
-    if (viewId === 'products' || viewId === 'product' || viewId === 'automobile-billing') {
-      viewId = 'view-automobile-billing';
+    if (viewId === 'products' || viewId === 'product' || viewId === 'automobile-billing' || viewId === 'view-automobile-billing') {
+      window.location.href = 'Automobile-Billing-Inventory-Management-Software/index.html';
+      return;
     }
     if (viewId === 'home' || viewId === 'view-home') {
       viewId = 'getting-started';
@@ -382,12 +383,6 @@
       if (homeSec) {
         homeSec.classList.remove('collapsed');
         homeSec.classList.add('open');
-      }
-    } else if (normView === 'automobile-billing') {
-      const autoSec = document.getElementById('sec-automobile-billing');
-      if (autoSec) {
-        autoSec.classList.remove('collapsed');
-        autoSec.classList.add('open');
       }
     }
   }
