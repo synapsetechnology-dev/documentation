@@ -112,7 +112,7 @@
   // DOM Elements
   const DOM = {
     views: document.querySelectorAll('.view-panel'),
-    navLinks: document.querySelectorAll('.nav-item-link, .nav-link, .footer-link'),
+    navLinks: document.querySelectorAll('.nav-item-link, .nav-link'),
     sidebarSections: document.querySelectorAll('.nav-section'),
     faqCards: document.querySelectorAll('.faq-card'),
     themeToggleBtn: document.getElementById('themeToggleBtn'),
